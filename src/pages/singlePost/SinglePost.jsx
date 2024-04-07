@@ -3,6 +3,7 @@ import Footer from '../../components/footer/Footer';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {useParams, Link} from 'react-router-dom'
+import Image from '../../assets/images/card.png'
 
 const SinglePost = () => {
     const {postId} = useParams();
@@ -25,13 +26,24 @@ const SinglePost = () => {
             console.log(err.message)
         })
     },[postId])
-
+ 
     return(
         <div>
             <Header />
-            <div className="card w-50 mb-3">
-                <h2 className="card-header">{post.title}</h2>
-                <p className="card-body">{post.description}</p>
+            <div className="card w-25 mb-3">
+                <img className="card-img-start" src={post.image ? post.image : Image} alt=""/>
+                <div className="card-body">
+                    <h2 className="card-title">{post.title}</h2>
+                    <p className="card-text">{post.description}</p>
+                </div>
+            </div>
+
+            <div>
+                {/* {
+                    post.comments.length > 0 ? post.comments.map(comment => (
+                        <p>{comment}</p>
+                    )) : 'No Comments'
+                } */}
             </div>
 
             <div>
