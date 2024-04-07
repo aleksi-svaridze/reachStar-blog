@@ -7,8 +7,12 @@ import { Link } from "react-router-dom";
 const Blog = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios
+        .get('https://apitest.reachstar.io/blog/list')
         .then(res => setPosts(res.data))
+        .catch(err => {
+            console.log(err.message)
+        })
     },[])
     return(
         <div>

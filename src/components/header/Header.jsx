@@ -1,11 +1,11 @@
-const { Link } = require("react-router-dom")
+import { NavLink } from "react-router-dom"
 
 const Header = () => {
     return(
         <header>
             <nav>
-                <Link to={'/'}>Home</Link>
-                <Link to={'/blog'}>blog</Link>
+                <NavLink className={({isActive}) => `${isActive ? 'text-primary' : 'text-black'}`} to={'/'}>Home</NavLink>
+                <NavLink className={({isActive}) => `${isActive ? 'text-primary' : 'text-black'}`} to={'/blog'}>blog</NavLink>
             </nav>
         </header>
     )
