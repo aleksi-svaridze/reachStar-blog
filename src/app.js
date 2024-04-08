@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom"
-import { useState } from "react";
 import Home from './pages/home/Home';
 import Blog from './pages/blog/Blog';
 import Login from './pages/login/Login';
@@ -9,13 +8,9 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 
 const App = () => {
-    const [isDark, setIsDark] = useState(false);
-    const toggleColorMode = () => {
-        setIsDark(!isDark);
-    }
     return(
-        <div className={`${isDark ? 'dark' : ''}`}>
-            <Header isDark={isDark} toggleColorMode={toggleColorMode} />
+        <div>
+            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path='blog' element={<Blog/>} />

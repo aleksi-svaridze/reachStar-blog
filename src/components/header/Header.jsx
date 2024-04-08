@@ -1,7 +1,65 @@
 import { NavLink, Link } from "react-router-dom"
-import { GoSun, GoMoon } from "react-icons/go";
+import { useEffect, useState } from "react";
 
-const Header = ({isDark, toggleColorMode}) => {
+const Header = () => {
+    const [theme, setTheme] = useState(
+        localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system'
+    );
+    const element = document.documentElement;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const options = [
+        {
+            icon: 'sunny-outline',
+            theme: 'light'
+        },
+        {
+            icon: 'moon-outline',
+            theme: 'dark'
+        },
+        {
+            icon: 'laptop-outline',
+            theme: 'system'
+        }
+    ]
+
+    const onWindowMatch = () => {
+        if(localStorage.theme === 'dark' || (!('theme' in localStorage) && mediaQuery.matches)) {
+            element.classList.add('dark');
+        } else {
+            element.classList.remove('dark');
+        }
+    }
+    
+    onWindowMatch()
+
+    useEffect(() => {
+        switch (theme) {
+            case 'dark':
+                element.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                break;
+            case 'light':
+                element.classList.remove('dark');
+                localStorage.setItem('theme', 'light')
+                break;
+            default:
+                localStorage.removeItem('theme');
+                onWindowMatch();
+                break;
+        }
+    })
+
+    mediaQuery.addEventListener('change', e => {
+        if(!('theme' in localStorage)) {
+            if(e.matches){
+                element.classList.add('dark')
+            } else {
+                element.classList.remove('dark')
+            }
+        }
+    }) 
+
     return(
         <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-5">
             <div className="container mx-auto flex justify-between items-center px-2">
@@ -19,10 +77,21 @@ const Header = ({isDark, toggleColorMode}) => {
                     <NavLink 
                         className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base ms-2 me-5 border-2 py-2 px-4 rounded-full border-blue-500 dark:border-white tracking-wide`}  
                         to={'/registration'}>Register</NavLink>
-                    <div 
-                        className="cursor-pointer" 
-                        onClick={toggleColorMode}>
-                            {isDark ? <GoSun className="w-8 h-8 text-blue-500 dark:text-white" /> : <GoMoon className="w-8 h-8 text-blue-500 dark:text-white" />}
+                    <div className="flex gap-x-3">
+                        {
+                            options.map(option => (
+                                <button
+                                    onClick={() => setTheme(option.theme)}
+                                    key={option.theme} 
+                                    className={
+                                        `w-6 h-6
+                                        ${theme === 'dark' ? 'text-red-500' : 'text-blue-500'}`
+                                    }
+                                >
+                                    <ion-icon name={option.icon}></ion-icon>
+                                </button>
+                            ))
+                        }
                     </div>
                 </nav>
             </div>
