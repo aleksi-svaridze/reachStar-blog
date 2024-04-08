@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+    color:
+        light-blue: #1565D8;
+        dark-blue: #0D2436;
+        blue: #183B56;
+*/
+
+/* 
+    light mode:
+        -hero background: #f9fcff; 
+*/
