@@ -1,5 +1,3 @@
-import Header from "../../components/header/Header";
-import Footer from '../../components/footer/Footer';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -18,7 +16,6 @@ const Blog = () => {
 
     return(
         <div>
-            <Header />
             <h1>All posts</h1>
             {
                 posts && posts.slice(0, 10).map(post => (
@@ -34,7 +31,6 @@ const Blog = () => {
                     </Link>
                 ))
             }
-            <Footer />
         </div>
     )
 }
