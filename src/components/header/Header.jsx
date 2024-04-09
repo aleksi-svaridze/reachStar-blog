@@ -5,6 +5,8 @@ const Header = () => {
     const [theme, setTheme] = useState(
         localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system'
     );
+    const [toggleMenu, setToggleMenu] = useState(true);
+
     const element = document.documentElement;
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -60,11 +62,22 @@ const Header = () => {
         }
     }) 
 
+    let iconColor;
+    // if(mediaQuery.matches && theme === 'system') {
+    //     iconColor = 'text-white';
+    // } else if(mediaQuery.matches && theme === 'dark') {
+    //     iconColor = 'text-white';
+    // } else if((mediaQuery.matches) && theme === 'light') {
+    //     iconColor = 'text-red-500';
+    // }
+
+    // console.log(theme, mediaQuery.matches)
+
     return(
-        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-5">
+        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-[21px] relative">
             <div className="container mx-auto flex justify-between items-center px-2">
                 <Link to='/'>Blog</Link>
-                <nav className="flex items-center">
+                <nav className="items-center hidden md:flex">
                     <NavLink 
                         className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`} 
                         to={'/'}>Home</NavLink> 
@@ -85,7 +98,7 @@ const Header = () => {
                                     key={option.theme} 
                                     className={
                                         `w-6 h-6
-                                        ${theme === 'dark' ? 'text-red-500' : 'text-blue-500'}`
+                                        ${iconColor}`
                                     }
                                 >
                                     <ion-icon name={option.icon}></ion-icon>
@@ -94,6 +107,44 @@ const Header = () => {
                         }
                     </div>
                 </nav>
+                <div 
+                    onClick={() => setToggleMenu(!toggleMenu)} 
+                    className="md:hidden cursor-pointer">
+                        <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+            <div 
+                style={{height: 'calc(100vh - 66px)'}} 
+                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-3/4 sm:w-1/2 bg-slate-500 absolute top-[66px] bottom-full duration-500 ${toggleMenu ? 'right-[-100%]' : 'right-0'}`}
+            >
+                <NavLink 
+                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`} 
+                    to={'/'}>Home</NavLink> 
+                <NavLink 
+                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`}  
+                    to={'/blog'}>Blog</NavLink>
+                <NavLink 
+                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 dark:border-white tracking-wide`}  
+                    to={'/login'}>Login</NavLink>
+                <NavLink 
+                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 dark:border-white tracking-wide`}  
+                    to={'/registration'}>Register</NavLink>
+                <div className="flex flex-col gap-y-3">
+                    {
+                        options.map(option => (
+                            <button
+                                onClick={() => setTheme(option.theme)}
+                                key={option.theme} 
+                                className={
+                                    `w-6 h-6
+                                    ${iconColor}`
+                                }
+                            >
+                                <ion-icon name={option.icon}></ion-icon>
+                            </button>
+                        ))
+                    }
+                </div>
             </div>
         </header>
     )
