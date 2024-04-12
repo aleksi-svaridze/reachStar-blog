@@ -109,7 +109,7 @@ const Header = () => {
                 </nav>
                 <div 
                     onClick={() => setToggleMenu(!toggleMenu)} 
-                    className="md:hidden cursor-pointer">
+                    className="md:hidden cursor-pointer text-white font-bold">
                         <ion-icon name="menu-outline"></ion-icon>
                 </div>
             </div>
