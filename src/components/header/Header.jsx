@@ -115,7 +115,7 @@ const Header = () => {
             </div>
             <div 
                 style={{height: 'calc(100vh - 66px)'}} 
-                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-3/4 md:w-auto sm:w-1/2 bg-slate-500 md:bg-transparent top-[66px] bottom-0 duration-500 absolute ${toggleMenu ? 'right-0' : '-right-full'}`}
+                className={`items-center pt-10 flex-col gap-y-5 md:hidden w-3/4 md:w-auto sm:w-1/2 bg-slate-500 md:bg-transparent top-[66px] bottom-0 duration-500 absolute ${toggleMenu ? 'flex' : 'hidden'}`}
             >
                 <NavLink 
                     className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`} 
