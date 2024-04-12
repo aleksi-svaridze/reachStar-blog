@@ -74,7 +74,7 @@ const Header = () => {
     // console.log(theme, mediaQuery.matches)
 
     return(
-        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-[21px] relative">
+        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-[21px] relative top-0 left-0 right-0">
             <div className="container mx-auto flex justify-between items-center px-2">
                 <Link to='/'>Blog</Link>
                 <nav className="items-center hidden md:flex">
