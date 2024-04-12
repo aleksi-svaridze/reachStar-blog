@@ -74,7 +74,7 @@ const Header = () => {
     // console.log(theme, mediaQuery.matches)
 
     return(
-        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-[21px]">
+        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-[21px] relative">
             <div className="container mx-auto flex justify-between items-center px-2">
                 <Link to='/'>Blog</Link>
                 <nav className="items-center hidden md:flex">
@@ -115,7 +115,7 @@ const Header = () => {
             </div>
             <div 
                 style={{height: 'calc(100vh - 66px)'}} 
-                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden md:bg-transparent w-3/4 md:w-auto sm:w-1/2 bg-slate-500 top-[66px] bottom-0 duration-500 fixed ${toggleMenu ? '-right-full' : 'right-0'}`}
+                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden md:bg-transparent w-3/4 md:w-auto sm:w-1/2 bg-slate-500 top-[66px] bottom-0 duration-500 absolute ${toggleMenu ? '-right-full' : 'right-0'}`}
             >
                 <NavLink 
                     className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`} 
