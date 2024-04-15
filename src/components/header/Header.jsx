@@ -1,153 +1,96 @@
 import { NavLink, Link } from "react-router-dom"
-import { useEffect, useState } from "react";
 
-const Header = () => {
-    const [theme, setTheme] = useState(
-        localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system'
-    );
-    const [toggleMenu, setToggleMenu] = useState(false);
-
-    const element = document.documentElement;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const options = [
-        {
-            icon: 'sunny-outline',
-            theme: 'light'
-        },
-        {
-            icon: 'moon-outline',
-            theme: 'dark'
-        },
-        {
-            icon: 'laptop-outline',
-            theme: 'system'
-        }
-    ]
-
-    const onWindowMatch = () => {
-        if(localStorage.theme === 'dark' || (!('theme' in localStorage) && mediaQuery.matches)) {
-            element.classList.add('dark');
-        } else {
-            element.classList.remove('dark');
-        }
-    }
-    
-    onWindowMatch()
-
-    useEffect(() => {
-        switch (theme) {
-            case 'dark':
-                element.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                break;
-            case 'light':
-                element.classList.remove('dark');
-                localStorage.setItem('theme', 'light')
-                break;
-            default:
-                localStorage.removeItem('theme');
-                onWindowMatch();
-                break;
-        }
-    })
-
-    mediaQuery.addEventListener('change', e => {
-        if(!('theme' in localStorage)) {
-            if(e.matches){
-                element.classList.add('dark')
-            } else {
-                element.classList.remove('dark')
-            }
-        }
-    }) 
-
-    let iconColor;
-    // if(mediaQuery.matches && theme === 'system') {
-    //     iconColor = 'text-white';
-    // } else if(mediaQuery.matches && theme === 'dark') {
-    //     iconColor = 'text-white';
-    // } else if((mediaQuery.matches) && theme === 'light') {
-    //     iconColor = 'text-red-500';
-    // }
-
-    // console.log(theme, mediaQuery.matches)
-
+export const Header = ({isMenuVisible, setIsMenuVisible}) => {
+  
     return(
-        <header className="bg-blue-100 dark:bg-blue-500 lg:py-8 xl:py-9 py-[21px] relative top-0 left-0 right-0">
-            <div className="container mx-auto flex justify-between items-center px-2">
-                <Link to='/'>Blog</Link>
-                <nav className="items-center hidden md:flex">
-                    <NavLink 
-                        className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`} 
-                        to={'/'}>Home</NavLink> 
-                    <NavLink 
-                        className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                        to={'/blog'}>Blog</NavLink>
-                    <NavLink 
-                        className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base ms-5 me-2 border-2 py-2 px-4 rounded-full border-blue-500 dark:border-white tracking-wide`}  
-                        to={'/login'}>Login</NavLink>
-                    <NavLink 
-                        className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base ms-2 me-5 border-2 py-2 px-4 rounded-full border-blue-500 dark:border-white tracking-wide`}  
-                        to={'/registration'}>Register</NavLink>
-                    <div className="flex gap-x-3">
-                        {
-                            options.map(option => (
-                                <button
-                                    onClick={() => setTheme(option.theme)}
-                                    key={option.theme} 
-                                    className={
-                                        `w-6 h-6
-                                        ${iconColor}`
-                                    }
-                                >
-                                    <ion-icon name={option.icon}></ion-icon>
-                                </button>
-                            ))
-                        }
+        <div className="sticky top-0 left-0 right-0 z-50 bg-blue-100">
+            <header className="lg:py-8 xl:py-9 py-[21px] container mx-auto">
+                <div className="flex justify-between items-center px-2">
+                    <Link to='/' className="">Blog</Link>
+                    <nav className="items-center hidden md:flex">
+                        <NavLink 
+                            className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
+                            to={'/'}>Home</NavLink> 
+                        <NavLink 
+                            className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
+                            to={'/blog'}>Blog</NavLink>
+                        <NavLink 
+                            className={`text-blue-500 font-opensans font-semibold text-base ms-5 me-2 border-2 py-2 px-4 rounded-full border-blue-500 tracking-wide`}  
+                            to={'/login'}>Login</NavLink>
+                        <NavLink 
+                            className={`text-blue-500 font-opensans font-semibold text-base ms-2 me-5 border-2 py-2 px-4 rounded-full border-blue-500 tracking-wide`}  
+                            to={'/registration'}>Register</NavLink>
+                    </nav>
+                    <div 
+                        onClick={() => setIsMenuVisible(!isMenuVisible)} 
+                        className="md:hidden cursor-pointer">
+                            <ion-icon className="w-8 h-8" name="menu-outline"></ion-icon>
                     </div>
-                </nav>
-                <div 
-                    onClick={() => setToggleMenu(!toggleMenu)} 
-                    className="md:hidden cursor-pointer text-white">
-                        <ion-icon className="w-8 h-8" name="menu-outline"></ion-icon>
                 </div>
-            </div>
-            <div 
-                style={{height: 'calc(100vh - 66px)'}} 
-                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-3/4 md:w-auto sm:w-1/2 bg-slate-500 md:bg-transparent top-[66px] bottom-0 duration-500 relative ${toggleMenu ? 'right-0' : '-right-full'}`}
+
+                <div
+                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-2/3 bg-slate-500 md:bg-transparent duration-500 ${isMenuVisible ? '-right-full' : 'right-0'} lg:static fixed top-[66px] bottom-0`}
             >
                 <NavLink 
-                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`} 
-                    to={'/'}>Home</NavLink> 
+                    className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
+                    to={'/'}
+                >
+                    Home
+                </NavLink> 
                 <NavLink 
-                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                    to={'/blog'}>Blog</NavLink>
+                    className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
+                    to={'/blog'}
+                >
+                    Blog
+                </NavLink>
                 <NavLink 
-                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 dark:border-white tracking-wide`}  
-                    to={'/login'}>Login</NavLink>
+                    className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
+                    to={'/login'}
+                >
+                    Login
+                </NavLink>
                 <NavLink 
-                    className={({isActive}) => `${isActive && 'text-red-500 dark:text-yellow-500'} text-blue-500 dark:text-white font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 dark:border-white tracking-wide`}  
-                    to={'/registration'}>Register</NavLink>
-                <div className="flex flex-col gap-y-3">
-                    {
-                        options.map(option => (
-                            <button
-                                onClick={() => setTheme(option.theme)}
-                                key={option.theme} 
-                                className={
-                                    `w-6 h-6
-                                    ${iconColor}`
-                                }
-                            >
-                                <ion-icon name={option.icon}></ion-icon>
-                            </button>
-                        ))
-                    }
+                    className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
+                    to={'/registration'}
+                >
+                    Register
+                </NavLink>
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
     )
 }
 
-export default Header;
+// export const MobileMenu = ({isMenuVisible}) => {
+//     return(
+//         <div 
+//             style={{height: 'calc(100vh - 66px)'}} 
+//             className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-3/4 md:w-auto sm:w-1/2 bg-slate-500 md:bg-transparent duration-500 ${isMenuVisible ? '-right-full' : 'right-0'} absolute bottom-0 top-[66px]`}
+//         >
+//             <NavLink 
+//                 className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
+//                 to={'/'}
+//             >
+//                 Home
+//             </NavLink> 
+//             <NavLink 
+//                 className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
+//                 to={'/blog'}
+//             >
+//                 Blog
+//             </NavLink>
+//             <NavLink 
+//                 className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
+//                 to={'/login'}
+//             >
+//                 Login
+//             </NavLink>
+//             <NavLink 
+//                 className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
+//                 to={'/registration'}
+//             >
+//                 Register
+//             </NavLink>
+//         </div>
+//     )
+// }
