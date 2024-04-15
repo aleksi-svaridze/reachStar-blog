@@ -27,7 +27,7 @@ export const Header = ({isMenuVisible, setIsMenuVisible}) => {
                 </div>
 
                 <div
-                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-2/3 bg-slate-500 md:bg-transparent duration-500 ${isMenuVisible ? 'right-0' : '-right-full'} lg:static fixed top-[66px] bottom-0`}
+                className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-2/3 bg-blue-100 border-l border-t md:bg-transparent duration-500 ${isMenuVisible ? 'right-0' : '-right-full'} lg:static fixed top-[66px] bottom-0`}
             >
                 <NavLink 
                     className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
@@ -58,37 +58,3 @@ export const Header = ({isMenuVisible, setIsMenuVisible}) => {
         </div>
     )
 }
-
-// export const MobileMenu = ({isMenuVisible}) => {
-//     return(
-//         <div 
-//             style={{height: 'calc(100vh - 66px)'}} 
-//             className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-3/4 md:w-auto sm:w-1/2 bg-slate-500 md:bg-transparent duration-500 ${isMenuVisible ? '-right-full' : 'right-0'} absolute bottom-0 top-[66px]`}
-//         >
-//             <NavLink 
-//                 className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
-//                 to={'/'}
-//             >
-//                 Home
-//             </NavLink> 
-//             <NavLink 
-//                 className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-//                 to={'/blog'}
-//             >
-//                 Blog
-//             </NavLink>
-//             <NavLink 
-//                 className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
-//                 to={'/login'}
-//             >
-//                 Login
-//             </NavLink>
-//             <NavLink 
-//                 className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
-//                 to={'/registration'}
-//             >
-//                 Register
-//             </NavLink>
-//         </div>
-//     )
-// }

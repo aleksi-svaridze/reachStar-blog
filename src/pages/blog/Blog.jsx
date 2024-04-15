@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Image from '../../assets/images/card.png'
+
+import Card from '../../components/Cards/Card'
 
 const Blog = () => {
     const [posts, setPosts] = useState([]);
@@ -15,22 +16,18 @@ const Blog = () => {
     },[])
 
     return(
-        <div>
-            <h1>All posts</h1>
-            {
-                posts && posts.slice(0, 10).map(post => (
-                    // <Link to={`${post.id}`} className="card w-50 mb-3" key={post.id}>
-                    //     <h2 className="card-header">{post.title}</h2>
-                    // </Link>
+        <div className="">
+            <div className="container mx-auto px-5">
+                <h1 className="py-[50px] text-blue-500 leading-10 md:leading-[60px] lg:leading-[68px] text-[31px] md:text-5xl lg:text-[56px] font-bold font-roboto">All posts</h1>
 
-                    <Link to={`${post.id}`} className="card w-25 mb-3 d-block" key={post.id}>
-                        <img className="card-img-top w-100" src={post.image ? post.image : Image} alt=""/>
-                        <div className="card-body">
-                            <h2 className="card-title">{post.title}</h2>
-                        </div>
-                    </Link>
-                ))
-            }
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-28">
+                    {
+                        posts.map(post => (
+                            <Card image={Image} post={post} url={`${post.id}`} key={post.id} />
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     )
 }
