@@ -61,7 +61,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className="">
-                    <h2 className="pb-[50px] text-blue-500 text-4xl font-bold font-roboto">Suggested posts</h2>
+                    <h2 className="pb-[50px] lg:leading-[56px] text-blue-500 text-lg md:text-xl lg:text-2xl lg:text-center font-bold font-roboto">Suggested posts</h2>
                     {
                         posts ? posts.filter(post => post.id !== Number(postId)).map(post => (
                             <Link to={`/blog/${post.id}`} className="flex gap-x-5 mb-4 border rounded-lg overflow-hidden hover:shadow" key={post.id}>
