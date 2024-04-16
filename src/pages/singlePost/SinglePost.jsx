@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import {useParams, Link} from 'react-router-dom'
 import Image from '../../assets/images/card.png'
+import scrolToTop from '../../functions/scrolToTop'
 
 const SinglePost = () => {
     const {postId} = useParams();
@@ -64,7 +65,12 @@ const SinglePost = () => {
                     <h2 className="pb-[50px] lg:leading-[56px] text-blue-500 text-lg md:text-xl lg:text-2xl lg:text-center font-bold font-roboto">Suggested posts</h2>
                     {
                         posts ? posts.filter(post => post.id !== Number(postId)).map(post => (
-                            <Link to={`/blog/${post.id}`} className="flex gap-x-5 mb-4 border rounded-lg overflow-hidden hover:shadow" key={post.id}>
+                            <Link 
+                                to={`/blog/${post.id}`} 
+                                className="flex gap-x-5 mb-4 border rounded-lg overflow-hidden hover:shadow" 
+                                key={post.id}
+                                onClick={scrolToTop}
+                            >
                                 <img src={Image} alt="" className="w-28 h-28" />
                                 <h2 className="pt-3 font-bold text-lg">{post.title}</h2>
                             </Link>

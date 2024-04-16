@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from '../../assets/images/card.png'
+import scrolToTop from '../../functions/scrolToTop'
 
 import Card from '../../components/Cards/Card'
 import Footer from "../../components/footer/Footer";
@@ -24,7 +25,13 @@ const Blog = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-28">
                     {
                         posts.map(post => (
-                            <Card image={Image} post={post} url={`${post.id}`} key={post.id} />
+                            <Card 
+                                image={Image} 
+                                post={post} 
+                                url={`${post.id}`} 
+                                key={post.id} 
+                                scrolToTop={scrolToTop}
+                            />
                         ))
                     }
                 </div>

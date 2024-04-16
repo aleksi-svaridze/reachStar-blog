@@ -27,8 +27,6 @@ const Registration = () => {
         .catch(err => console.log(err.message ))
     }
 
-console.log(email, name, password)
-
     return(
         <div className="container mx-auto px-5 py-20">
             <h2 className="text-lg md:text-xl lg:text-3xl text-center font-roboto text-blue-500 font-bold">Sign In</h2>

@@ -1,29 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate()
+const Login = ({email, setEmail, password, setPassword, loginUserHandler}) => {
 
-    const loginUserHandler = e => {
-        e.preventDefault();
-        axios.post('https://apitest.reachstar.io/signin', {
-            'email': email,
-            'password': password
-        })
-            .then(res => {
-                console.log(res)
-                if(res.status === 200) {
-                    navigate('/')
-                } else {
-                    console.log('Incorrect user data')
-                }
-            })
-            .catch(err => console.log(err.message))
-
-    }
     return(
         <div className="container mx-auto px-5 py-20">
             <h2 className="text-lg md:text-xl lg:text-3xl text-center font-roboto text-blue-500 font-bold">Log In</h2>
