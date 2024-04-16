@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom"
 export const Header = ({isMenuVisible, setIsMenuVisible}) => {
   
     return(
-        <div className="sticky top-0 left-0 right-0 z-50 bg-blue-100">
+        <div className=" bg-blue-100">
             <header className="lg:py-8 xl:py-9 py-[21px] container mx-auto flex justify-between items-center px-5">
                 <Link to='/' className="">Blog</Link>
                 <nav className="items-center hidden md:flex">

@@ -6,7 +6,6 @@ import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import SinglePost from './pages/singlePost/SinglePost';
 import { Header} from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import NotFound from "./pages/notFound/NotFound";
 
 const App = () => {
@@ -21,11 +20,9 @@ const App = () => {
                     <Route path="" element={<SinglePost />} />
                 </Route>
                 <Route path="login" element={<Login />} />
-                {/* <Route index element={<Login />} /> */}
                 <Route path="registration" element={<Registration />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer />
         </div>
     )
 }
