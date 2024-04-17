@@ -7,7 +7,7 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
     return(
         <div className=" bg-blue-100">
             <header className="lg:py-8 xl:py-9 py-[21px] container mx-auto flex justify-between items-center px-5">
-                <Link to='/' className="">Blog</Link>
+                <Link to='/' className="text-xl md:text-4xl font-bold font-roboto text-blue-500">Blog</Link>
                 <nav className="items-center hidden md:flex">
                     <NavLink 
                         className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
