@@ -39,6 +39,10 @@ const SinglePost = () => {
         setAddComment('');
     }
 
+    const handleDeleteComment = commentId => {
+        axios.delete(`https://apitest.reachstar.io/comment/delete/${commentId}`);
+    }
+
     console.log(post)
  
     return(
@@ -54,7 +58,7 @@ const SinglePost = () => {
                         <div>
                             <h3 className="capitalize mb-4">comments:</h3>
                             {post.comments ? post.comments.map(comment => (
-                                <div key={comment.id} className="bg-[#F2F4F5] text-blue-200 p-3 rounded-md mb-5 last:mb-0 flex gap-x-5">
+                                <div key={comment.id} className="bg-[#F2F4F5] relative text-blue-200 p-3 rounded-md mb-5 last:mb-0 flex gap-x-5">
                               
                                     <div className="rounded-full w-12 h-12 bg-red-500 shrink-0"></div>
 
@@ -63,7 +67,12 @@ const SinglePost = () => {
                                             User name here{comment.id}
                                             <span className="block font-normal text-xs">{comment.created_at}</span>
                                         </h4>
-                                        <p className="text-sm">{comment.comment} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio libero suscipit veritatis sequi voluptatum reprehenderit alias, officia molestiae totam nihil, id soluta ullam? Odit eaque, accusamus consequatur corporis maxime ea?</p> 
+                                        <p className="text-sm">{comment.comment}</p> 
+                                    </div>
+                                    <div 
+                                        className='top-3 right-3 cursor-pointer absolute'
+                                        onClick={() => handleDeleteComment(comment.id)}>
+                                        <ion-icon name="trash-bin-outline" style={{width: '20px', height: '20px'}}></ion-icon>
                                     </div>
                                 </div>
                                  )) : 'No comments yet.. Be first to write one'
