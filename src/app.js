@@ -11,6 +11,7 @@ import axios from 'axios';
 
 import { PrivatRoutes } from "./routes/PrivatRoutes";
 import { useState } from "react";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,11 +42,13 @@ const App = () => {
     return(
         <div className="">
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            
             <Routes>
 
                 <Route element={<PrivatRoutes isLoggedIn={isLoggedIn} />}>
                     <Route path="/" element={<Home />} />
                     <Route path='blog' element={<Blog/>} />
+                    <Route path='dashboard' element={<Dashboard />} />
                     <Route path="blog/:postId" element={<SinglePost />}>
                         <Route path="" element={<SinglePost />} />
                     </Route>
