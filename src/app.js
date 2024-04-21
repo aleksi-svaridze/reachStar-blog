@@ -22,21 +22,16 @@ const App = () => {
     const loginUserHandler = e => {
         e.preventDefault();
         axios.post('https://apitest.reachstar.io/signin', {
-            'email': email,
-            'password': password
+            email, password
         })
             .then(res => {
                 console.log(res)
                 if(res.status === 200) {
-                    // localStorage.setItem('status', 'logged in')
                     setIsLoggedIn(true)
                     navigate('/')
-                } else {
-                    // localStorage.removeItem('status')
                 }
             })
             .catch(err => console.log(err.message))
-
     }
 
     return(

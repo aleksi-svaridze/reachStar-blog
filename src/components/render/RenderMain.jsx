@@ -3,7 +3,7 @@
 
 const RenderMainPage = () => {
     return(
-        <div>
+        <div className="">
             RenderMainPage
         </div>
     )

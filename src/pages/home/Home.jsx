@@ -2,6 +2,7 @@ import Card from "../../components/Cards/Card";
 import Hero from "../../components/hero/Hero";
 import PostImage from '../../assets/images/card.png'
 import { Link } from "react-router-dom";
+import scrollToTop from "../../functions/scrolToTop";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -24,7 +25,7 @@ const Home = () => {
             <div className="container mx-auto -mt-[200px] px-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
-                    posts.map(post => (
+                    posts.slice(0, 12).map(post => (
                         <Card 
                             image={PostImage} 
                             post={post} 
@@ -36,7 +37,10 @@ const Home = () => {
                 }
                 </div>
                 <div className="py-16 text-center">
-                    <Link to={'blog'} className="border-2 rounded-lg px-4 py-2 border-blue-light inline-flex items-center gap-x-2 text-blue-light font-bold hover:shadow-xl">
+                    <Link 
+                        to={'blog'} 
+                        onClick={scrollToTop}
+                        className="border-2 rounded-lg px-4 py-2 border-blue-light inline-flex items-center gap-x-2 text-blue-light font-bold hover:shadow-xl">
                         More Articles
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </Link>
