@@ -1,9 +1,4 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Image from '../../assets/images/card.png'
-import scrolToTop from '../../functions/scrolToTop'
 import { NavLink, useParams } from "react-router-dom";
-import Card from '../../components/Cards/Card'
 import Footer from "../../components/footer/Footer";
 import { useWindowSize } from "@uidotdev/usehooks";
 import RenderAddArticle from "../../components/render/RenderAdd";
@@ -13,17 +8,7 @@ import RenderMainPage from "../../components/render/RenderMain";
 
 const Dashboard = () => {
     const {width} = useWindowSize();
-    const [posts, setPosts] = useState([]);
     let {actionsId} = useParams();
-
-    useEffect(() => {
-        axios
-        .get('https://apitest.reachstar.io/blog/list')
-        .then(res => setPosts(res.data))
-        .catch(err => {
-            console.log(err.message)
-        })
-    },[])
 
     let render = '';
 
