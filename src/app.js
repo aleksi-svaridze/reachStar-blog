@@ -48,10 +48,16 @@ const App = () => {
                 <Route element={<PrivatRoutes isLoggedIn={isLoggedIn} />}>
                     <Route path="/" element={<Home />} />
                     <Route path='blog' element={<Blog/>} />
-                    <Route path='dashboard' element={<Dashboard />} />
                     <Route path="blog/:postId" element={<SinglePost />}>
                         <Route path="" element={<SinglePost />} />
                     </Route>
+
+                    <Route path='dashboard' element={<Dashboard />} />
+                    <Route path='dashboard/:actionsId' element={<Dashboard />}>
+                        <Route path='' element={<Dashboard />} />
+                    </Route>
+                  
+                    
                 </Route>
                 
                 <Route 

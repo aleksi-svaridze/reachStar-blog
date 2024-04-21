@@ -25,7 +25,13 @@ const Home = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
                     posts.map(post => (
-                        <Card image={PostImage} post={post} url={`blog/${post.id}`} key={post.id}/>
+                        <Card 
+                            image={PostImage} 
+                            post={post} 
+                            url={`blog/${post.id}`} 
+                            key={post.id}
+                            textLimits={true}
+                        />
                     ))
                 }
                 </div>

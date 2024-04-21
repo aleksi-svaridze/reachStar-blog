@@ -9,7 +9,6 @@ const SinglePost = () => {
     const {postId} = useParams();
     const [post, setPost] = useState({});
     const [posts, setPosts] = useState([]);
-
     const [addComment, setAddComment] = useState('');
 
     useEffect(() => {
@@ -42,8 +41,6 @@ const SinglePost = () => {
     const handleDeleteComment = commentId => {
         axios.delete(`https://apitest.reachstar.io/comment/delete/${commentId}`);
     }
-
-    console.log(post)
  
     return(
         <div className="mt-[64px] lg:mt-[100px]">
@@ -53,7 +50,7 @@ const SinglePost = () => {
                         <h1 className="pb-[50px] text-blue-500 text-[31px] md:text-5xl lg:text-[56px] font-bold font-roboto">{post.title}</h1>
                         <img className="w-full rounded-lg" src={post.image ? post.image : Image} alt=""/>
                         
-                        <p className="py-10">Description - {post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum temporibus voluptate facilis rem saepe cumque quo dolor. Qui, sit numquam eos, velit veniam laboriosam hic recusandae exercitationem a aspernatur laborum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab magnam iusto, quaerat dolores odit a dicta laborum deserunt nostrum facilis quam maiores labore beatae laudantium voluptas illum delectus eos! Adipisci.</p>
+                        <p className="py-10">{post.description}</p>
 
                         <div>
                             <h3 className="capitalize mb-4">comments:</h3>
