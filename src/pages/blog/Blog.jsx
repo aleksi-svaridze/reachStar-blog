@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from '../../assets/images/card.png'
 import scrolToTop from '../../functions/scrolToTop'
 
-import Card from '../../components/Cards/Card'
+import {Card} from '../../components/Cards/Card'
 import Footer from "../../components/footer/Footer";
 
 const Blog = () => {

@@ -48,7 +48,12 @@ const App = () => {
                     </Route>
 
                     <Route path='dashboard' element={<Dashboard />} />
+                    
                     <Route path='dashboard/:actionsId' element={<Dashboard />}>
+                        <Route path='' element={<Dashboard />} />
+                    </Route>
+
+                    <Route path='dashboard/:actionsId/:Id' element={<Dashboard />}>
                         <Route path='' element={<Dashboard />} />
                     </Route>
                   

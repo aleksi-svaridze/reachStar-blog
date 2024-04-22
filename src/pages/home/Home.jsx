@@ -1,4 +1,4 @@
-import Card from "../../components/Cards/Card";
+import {Card} from "../../components/Cards/Card";
 import Hero from "../../components/hero/Hero";
 import PostImage from '../../assets/images/card.png'
 import { Link } from "react-router-dom";
