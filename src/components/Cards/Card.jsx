@@ -20,13 +20,13 @@ export const Card = ({post, image, url, scrolToTop, textLimits}) => {
     )
 }
 
-export const DashboardCard = ({post, image, url, scrolToTop, textLimits, action, deleteHandler}) => {
+export const DashboardCard = ({post, image, url, scrolToTop, textLimits, action, clickHandler}) => {
     let {width} = useWindowSize();
     return(
         <Link 
             to={url} 
             className="rounded-xl overflow-hidden bg-white shadow-xl shadow-black-500/100 flex items-center pr-2 gap-x-3 h-[80px]"
-            onClick={() => deleteHandler(post.id)}
+            onClick={clickHandler ? () => clickHandler(post.id) : scrolToTop}
         >
             <img src={image} alt="" className='h-full shrink-1' />
 

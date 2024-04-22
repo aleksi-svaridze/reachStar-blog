@@ -34,7 +34,7 @@ const RenderDeleteArticle = () => {
                         key={post.id} 
                         image={image} 
                         action={'delete'}
-                        deleteHandler={deleteHandler}
+                        clickHandler={deleteHandler}
                     />
                 )) : 'Loading..'
             }
