@@ -1,5 +1,6 @@
 import { NavLink, Link } from "react-router-dom"
 import { useState } from "react";
+import scrollToTop from '../../functions/scrolToTop'
 
 export const Header = ({isLoggedIn, setIsLoggedIn}) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -7,21 +8,23 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
     return(
         <div className=" bg-blue-100 fixed left-0 right-0 top-0 z-10">
             <header className="lg:py-8 xl:py-9 py-[21px] container mx-auto flex justify-between items-center px-5">
-                <Link to='/' className="text-xl md:text-4xl font-bold font-roboto text-blue-500">Blog</Link>
+                <Link onClick={scrollToTop} to='/' className="text-xl md:text-4xl font-bold font-roboto text-blue-500">Blog</Link>
                 <nav className="items-center hidden md:flex">
                     <NavLink 
                         className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
-                        to={'/'}>Home</NavLink> 
+                        onClick={scrollToTop} to={'/'}>Home</NavLink> 
                     <NavLink 
                         className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                        to={'/blog'}>Blog</NavLink>
+                        onClick={scrollToTop} to={'/blog'}>Blog</NavLink>
                     {
                         isLoggedIn && (<NavLink 
                             className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                            to={'/dashboard'}>Dashboard</NavLink>)
+                            onClick={scrollToTop} to={'/dashboard'}>Dashboard</NavLink>)
                     }
                     <NavLink 
-                        onClick={() => setIsLoggedIn(false)}
+                        onClick={() => {
+                            setIsLoggedIn(false);
+                        }}
                         className={`text-blue-500 font-opensans font-semibold text-base ms-5 me-2 border-2 py-2 px-4 rounded-full border-blue-500 tracking-wide`}  
                         to={`/login`}> 
                         {
@@ -46,13 +49,13 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
                 >
                     <NavLink 
                         className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
-                        to={'/'}
+                        onClick={scrollToTop} to={'/'}
                     >
                         Home
                     </NavLink> 
                     <NavLink 
                         className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                        to={'/blog'}
+                        onClick={scrollToTop} to={'/blog'}
                     >
                         Blog
                     </NavLink>
@@ -60,14 +63,16 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
                         isLoggedIn && (
                             <NavLink 
                                 className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                                to={'/dashboard'}
+                                onClick={scrollToTop} to={'/dashboard'}
                             >
                                 dashboard
                             </NavLink>
                         )
                     }
                     <NavLink 
-                        onClick={() => setIsLoggedIn(false)}
+                        onClick={() => {
+                            setIsLoggedIn(false)
+                        }}
                         className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
                         to={`${isLoggedIn && '/login'}`}
                     >

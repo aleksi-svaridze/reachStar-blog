@@ -1,31 +1,41 @@
 import ReactQuill from 'react-quill';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 import 'react-quill/dist/quill.snow.css';
+import scrollToTop from '../../functions/scrolToTop';
 
 
 const RenderAddArticle = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const navigate = useNavigate();
 
     const handleArticleData = (e) => {
         e.preventDefault();
        
         setTitle(title);
-        setDescription(description)
+        setDescription(description);
 
         axios.post('https://apitest.reachstar.io/blog/add', {
-        title: title, 
-        description: description,
-        id: Math.random()
+            title: title, 
+            description: description,
+            id: Math.random()
         })
-        .then(response => console.log(response))
+        .then(response => console.log(response.status))
         .catch(error => console.log(error));
+
+        setTitle('');
+        setDescription('');
+
+        navigate('/dashboard');
+        scrollToTop();
+       
     }
 
     return(
-        <form>
+        <form> 
             <div className='flex flex-col gap-y-2'>
                 <label className='capitalize font-bold font-roboto text-blue-500'>Add Article title</label>
                 <ReactQuill 

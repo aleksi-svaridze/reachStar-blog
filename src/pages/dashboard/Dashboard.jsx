@@ -1,5 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
+import { Link, useParams } from "react-router-dom";
 import { useWindowSize } from "@uidotdev/usehooks";
 import RenderMainPage from '../../components/render/RenderMain';
 import RenderAddArticle from "../../components/render/RenderAdd";
@@ -31,18 +30,26 @@ const Dashboard = () => {
                 <div className="grid grid-cols-12 gap-x-3 md:gap-x-5 lg:gap-x-10 pb-28">
                     <div className="grid col-span-2 md:col-span-4 lg:col-span-3 p-2">
                         <nav className="flex flex-col gap-y-3">
-                            <NavLink to={`/dashboard`} className={`${(isActive) => isActive ? 'text-red-500' : 'text-blue-500'} md:border-b pb-2`}>
-                                    {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="home-outline" size='small'></ion-icon>Main page</span>) : <ion-icon name="home-outline" size='large'></ion-icon> }
-                            </NavLink>
-                            <NavLink to={`/dashboard/add`} className={`${(isActive) => isActive ? 'text-red-500' : 'text-blue-500'} md:border-b py-2`}>
-                                {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="add-circle-outline" size='small'></ion-icon>სიახლის დამატება</span>) : <ion-icon name="add-circle-outline" size='large'></ion-icon> }
-                            </NavLink>
-                            <NavLink to='/dashboard/edit' className={`${(isActive) => isActive ? 'text-red-500' : 'text-blue-500'} md:border-b py-2`}>
-                                {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="create-outline" size='small'></ion-icon>სიახლის რედაქტირება</span>) : <ion-icon name="create-outline" size='large'></ion-icon>}
-                            </NavLink>
-                            <NavLink to='/dashboard/delete' className={`${(isActive) => isActive ? 'text-red-500' : 'text-blue-500'} md:border-b py-2`}>
-                                {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="trash-outline" size='small'></ion-icon>სიახლის წაშლა</span>) : <ion-icon name="trash-outline" size='large'></ion-icon>}
-                            </NavLink>
+                            <Link 
+                                to={`/dashboard`} 
+                                className='text-blue-500 md:border-b pb-2'>
+                                    {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="home-outline" size='small'></ion-icon>All Articles</span>) : <ion-icon name="home-outline" size='large'></ion-icon> }
+                            </Link>
+                            <Link 
+                                to={`/dashboard/add`} 
+                                className='text-blue-500 md:border-b pb-2'>
+                                {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="add-circle-outline" size='small'></ion-icon>Add new article</span>) : <ion-icon name="add-circle-outline" size='large'></ion-icon> }
+                            </Link>
+                            <Link 
+                                to='/dashboard/edit' 
+                                className='text-blue-500 md:border-b pb-2'>
+                                {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="create-outline" size='small'></ion-icon>Edit article</span>) : <ion-icon name="create-outline" size='large'></ion-icon>}
+                            </Link>
+                            <Link 
+                                to='/dashboard/delete' 
+                                className='text-blue-500 md:border-b pb-2'>
+                                {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="trash-outline" size='small'></ion-icon>Delete article</span>) : <ion-icon name="trash-outline" size='large'></ion-icon>}
+                            </Link>
                         </nav>
                     </div>
                     <div className="grid gap-y-5 col-span-9 md:col-span-8 lg:col-span-9 p-2">
@@ -50,7 +57,6 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

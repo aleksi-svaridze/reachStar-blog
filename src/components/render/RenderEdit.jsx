@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 import {DashboardCard} from '../Cards/Card'
 import image from '../../assets/images/card.png'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
-import scrolToTop from '../../functions/scrolToTop'
+import scrollToTop from '../../functions/scrolToTop'
 
 
 const RenderEditArticle = () => {
     const [posts, setPosts] = useState([]);
-    // const [post, setPost] = useState({});
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const navigate = useNavigate();
 
     let {Id} = useParams();
 
@@ -24,10 +24,10 @@ const RenderEditArticle = () => {
     useEffect(() => {
         axios.get(`https://apitest.reachstar.io/blog/get/${Id}`)
             .then(res => {
-                setTitle(res.data.title)
-                setDescription(res.data.description)
+                setTitle(res.data.title);
+                setDescription(res.data.description);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.message))
     },[Id])
 
     const handleEdit = e => {
@@ -35,6 +35,9 @@ const RenderEditArticle = () => {
         axios.put(`https://apitest.reachstar.io/blog/edit/${Id}`, {title, description})
             .then(res => console.log(res))
             .catch(err => console.log(err))
+
+            navigate('/dashboard')
+            scrollToTop();
     }
 
     return(
@@ -66,8 +69,9 @@ const RenderEditArticle = () => {
                         post={post} 
                         url={`${post.id}`} 
                         key={post.id} 
+                        action='edit'
                         image={image} 
-                        scrolToTop={scrolToTop}/>
+                    />
                 )) : 'Loading..'
             }
         </div>

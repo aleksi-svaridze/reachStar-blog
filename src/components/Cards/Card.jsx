@@ -22,9 +22,21 @@ export const Card = ({post, image, url, scrolToTop, textLimits}) => {
 
 export const DashboardCard = ({post, image, url, scrolToTop, textLimits, action, clickHandler}) => {
     let {width} = useWindowSize();
+
+    let icon = '';
+    switch(action){
+        case 'delete':
+            icon = <ion-icon name="trash-outline" size={width >= 768 ? 'large' : 'small'}></ion-icon>;
+            break;
+        case 'edit':
+            icon = <ion-icon name="create-outline" size={width >= 768 ? 'large' : 'small'}></ion-icon>
+            break;
+        default:
+            icon = ''
+    }
     return(
         <Link 
-            to={url} 
+            to={icon === '' ? '' : url} 
             className="rounded-xl overflow-hidden bg-white shadow-xl shadow-black-500/100 flex items-center pr-2 gap-x-3 h-[80px]"
             onClick={clickHandler ? () => clickHandler(post.id) : scrolToTop}
         >
@@ -36,13 +48,7 @@ export const DashboardCard = ({post, image, url, scrolToTop, textLimits, action,
             />
 
             <div className='ml-auto mr-0'>
-                {
-                    action === 'delete' 
-                    ? 
-                    <ion-icon name="trash-outline" size={width >= 768 ? 'large' : 'small'}></ion-icon>
-                    : 
-                    <ion-icon name="create-outline" size={width >= 768 ? 'large' : 'small'}></ion-icon>
-                }
+              {icon}
             </div>
         </Link>
     )

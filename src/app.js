@@ -25,7 +25,6 @@ const App = () => {
             email, password
         })
             .then(res => {
-                console.log(res)
                 if(res.status === 200) {
                     setIsLoggedIn(true)
                     navigate('/')
