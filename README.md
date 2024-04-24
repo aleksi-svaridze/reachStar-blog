@@ -1,1 +1,1 @@
- [https://reach-star-blog.netlify.app/](https://reach-star-blog.netlify.app/) to view it in your browser.
+ Click this uri - [https://reach-star-blog.netlify.app/](https://reach-star-blog.netlify.app/) - to view it in your browser.
