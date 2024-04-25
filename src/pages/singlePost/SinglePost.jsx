@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {useParams, Link} from 'react-router-dom'
-import Image from '../../assets/images/card.png'
+import {useParams, Link} from 'react-router-dom';
+import Image from '../../assets/images/card.png';
+import User_1 from '../../assets/images/users/user_1.jpg';
 import scrolToTop from '../../functions/scrolToTop'
 import Footer from "../../components/footer/Footer";
 import Comment from "../../components/comments/Comment";
@@ -44,7 +45,11 @@ const SinglePost = () => {
                             <p className="py-10 text-blue-500 indent-4 text-justify" dangerouslySetInnerHTML={{__html: post.description}} />
 
                             <div className="font-normal text-xs flex flex-col sm:flex-row sm:justify-between capitalize text-blue-200">
-                                <span className="font-bold mb-1 text-sm sm:mb-0">post author: ?</span>
+                                <div className="flex gap-x-4 items-center mb-2 sm:mb-0">
+                                    <img src={post.image ? post.image : User_1} className="w-10 rounded-full" alt="" />
+                                    <span className="font-bold text-sm">post author: {post.user_id}</span>
+                                </div>
+                              
                                 <div className="flex flex-col">
                                     <span>
                                         Publish date: 

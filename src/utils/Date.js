@@ -12,4 +12,3 @@ export let months = [
     'November', 
     'December'
 ]
-

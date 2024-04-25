@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import axios from 'axios'
 import { months } from '../../utils/Date';
+import User_1 from '../../assets/images/users/SB-Standees-Spong-1_700x.webp'
 
 
 
@@ -30,7 +31,9 @@ export default function Comment({postId, post}) {
                         key={comment.id} 
                         className="bg-[#F2F4F5] relative text-blue-200 p-3 rounded-md mb-5 last:mb-0 flex gap-x-5">
                 
-                        <div className="rounded-full w-12 h-12 bg-red-500 shrink-0"></div>
+                        <div className="rounded-full w-12 h-12 shrink-0 overflow-hidden">
+                            <img src={comment.image ? comment.image : User_1} className='rounded-full w-12 h-12' alt={comment.comment} />
+                        </div>
 
                         <div className="font-roboto">
                             <h4 className="font-bold text-base mb-2">
