@@ -32,6 +32,7 @@ const Home = () => {
                             url={`blog/${post.id}`} 
                             key={post.id}
                             textLimits={true}
+                            scrolToTop={scrollToTop}
                         />
                     ))
                 }
