@@ -28,8 +28,8 @@ const Registration = () => {
     }
 
     return(
-        <div className="container mx-auto px-5 py-20">
-            <h2 className="text-lg md:text-xl lg:text-3xl text-center font-roboto text-blue-500 font-bold">Sign In</h2>
+        <div className="container mx-auto px-5 py-20 mt-[64px] lg:mt-[100px]">
+            <h2 className="text-lg md:text-xl lg:text-3xl text-center font-roboto text-blue-500 font-bold">Sign Up</h2>
             <form className="max-w-[360px] mx-auto mt-5">
                 <div className="flex flex-col gap-y-2 mb-5" id="">
                     <label htmlFor="name" className="text-blue-200 font-semibold text-base cursor-pointer">Name</label>
