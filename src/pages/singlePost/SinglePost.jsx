@@ -82,12 +82,16 @@ const SinglePost = () => {
                             posts ? posts.slice(0, 5).filter(post => post.id !== Number(postId)).map(post => (
                                 <Link 
                                     to={`/blog/${post.id}`} 
-                                    className="flex gap-x-5 mb-4 border rounded-lg overflow-hidden hover:shadow" 
+                                    className="flex gap-x-3 mb-4 border rounded-lg overflow-hidden hover:shadow max-h-20" 
                                     key={post.id}
                                     onClick={scrolToTop}
                                 >
                                     <img src={Image} alt="" className="w-20 h-20" />
-                                    <h2 className="pt-3 font-bold text-lg" dangerouslySetInnerHTML={{__html: post.title}}/>
+                                    <div className="relative w-full">
+                                        <h2 className="pt-3 font-bold text-sm py-1 leading-none" dangerouslySetInnerHTML={{__html: post.title.substring(0,50)}}/>
+                                        <p className="text-xs" dangerouslySetInnerHTML={{__html: post.description}}/>
+                                        <span className="absolute bottom-0 right-0 left-0 h-10 bg-gradient-to-b from-transparent to-white"></span>
+                                    </div>
                                 </Link>
                             )) :
                             'Loading..'

@@ -1,9 +1,15 @@
 import { NavLink, Link } from "react-router-dom"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import scrollToTop from '../../functions/scrolToTop'
+import { useWindowSize } from "@uidotdev/usehooks";
 
 export const Header = ({isLoggedIn, setIsLoggedIn}) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
+    let {width} = useWindowSize();
+
+    useEffect(() => {
+        width >= 768 && setIsMenuVisible(false);
+    }, [width])
 
     return(
         <div className=" bg-blue-100 fixed left-0 right-0 top-0 z-10">
@@ -39,7 +45,10 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
                     }
                 </nav>
                 <div
-                    onClick={() => setIsMenuVisible(!isMenuVisible)} 
+                    onClick={() => {
+                        setIsMenuVisible(!isMenuVisible);
+                        scrollToTop();
+                    }} 
                     className="md:hidden cursor-pointer">
                         <ion-icon className="w-8 h-8" name="menu-outline"></ion-icon>
                 </div>
