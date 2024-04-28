@@ -71,6 +71,7 @@ const RenderEditArticle = () => {
                         key={post.id} 
                         action='edit'
                         image={image} 
+                        textLimits={true}
                     />
                 ))
             }

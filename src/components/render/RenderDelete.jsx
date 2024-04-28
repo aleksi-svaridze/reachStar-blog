@@ -3,11 +3,9 @@ import axios from 'axios'
 import {DashboardCard} from '../Cards/Card'
 import image from '../../assets/images/card.png'
 import scrollToTop from '../../functions/scrolToTop';
-import { useNavigate } from 'react-router-dom';
 
 const RenderDeleteArticle = () => {
     const [posts, setPosts] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('https://apitest.reachstar.io/blog/list')
@@ -17,8 +15,7 @@ const RenderDeleteArticle = () => {
 
     const deleteHandler = (Id) => {
         axios.delete(`https://apitest.reachstar.io/blog/delete/${Id}`);
-        
-        navigate('/dashboard');
+        setPosts(posts.filter(post => post.id !== Id));
         scrollToTop();
     }
 
@@ -29,6 +26,7 @@ const RenderDeleteArticle = () => {
                     <DashboardCard 
                         post={post} 
                         url={`${post.id}`} 
+                        textLimits={true}
                         key={post.id} 
                         image={image} 
                         action={'delete'}

@@ -40,11 +40,11 @@ export const DashboardCard = ({post, image, url, scrolToTop, textLimits, action,
             className="rounded-xl overflow-hidden bg-white shadow-xl shadow-black-500/100 flex items-center pr-2 gap-x-3 h-[80px]"
             onClick={clickHandler ? () => clickHandler(post.id) : scrolToTop}
         >
-            <img src={image} alt="" className='h-full shrink-1' />
+            <img src={image} alt="" className='hidden sm:block h-full shrink-1' />
 
             <h3 
-                className='text-blue-500 font-roboto font-sm md:text-base font-normal capitalize' 
-                dangerouslySetInnerHTML={{__html: textLimits ? post.title.slice(0, 100) : post.title}} 
+                className='text-blue-500 font-roboto font-sm md:text-base font-normal capitalize pl-3 sm:pl-0' 
+                dangerouslySetInnerHTML={{__html: textLimits && width < 640 ? post.title.substring(0, 30) : post.title}} 
             />
 
             <div className='ml-auto mr-0'>

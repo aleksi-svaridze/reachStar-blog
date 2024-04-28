@@ -35,28 +35,21 @@ const App = () => {
     const loginUserHandler = e => {
         e.preventDefault();
 
-        if(isLoggedIn) {
-            navigate('/')
-        } else {
-            axios
-            .post('https://apitest.reachstar.io/signin', {email, password})
-            .then(res => {
-                if(res.status === 200) {
-                    setIsLoggedIn(true)
-                    navigate('/')
-                }
-            })
-            .catch(err => console.log(err.message))
-        }
+        axios
+        .post('https://apitest.reachstar.io/signin', {email, password})
+        .then(res => {
+            if(res.status === 200) {
+                setIsLoggedIn(true)
+                navigate('/')
+            }
+        })
+        .catch(err => console.log(err.message))
     }
 
     return(
         <div className="">
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            
             <Routes>
-                
-
                 {
                     isLoggedIn ? 
                     (<Route element={<PrivatRoutes isLoggedIn={isLoggedIn} />}>
