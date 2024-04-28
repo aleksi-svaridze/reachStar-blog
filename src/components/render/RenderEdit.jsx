@@ -64,7 +64,7 @@ const RenderEditArticle = () => {
                             onClick={e => handleEdit(e)}>
                                 Save changes
                         </button>
-                    </form>) : posts ? posts.slice(0, 9).map(post => (
+                    </form>) : posts && posts.map(post => (
                     <DashboardCard 
                         post={post} 
                         url={`${post.id}`} 
@@ -72,7 +72,7 @@ const RenderEditArticle = () => {
                         action='edit'
                         image={image} 
                     />
-                )) : 'Loading..'
+                ))
             }
         </div>
     )

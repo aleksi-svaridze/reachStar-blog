@@ -25,7 +25,7 @@ const RenderDeleteArticle = () => {
     return(
         <div className='flex gap-5 flex-col'>
             {
-                posts ? posts.slice(0, 9).map(post => (
+                posts && posts.map(post => (
                     <DashboardCard 
                         post={post} 
                         url={`${post.id}`} 
@@ -34,7 +34,7 @@ const RenderDeleteArticle = () => {
                         action={'delete'}
                         clickHandler={deleteHandler}
                     />
-                )) : 'Loading..'
+                ))
             }
         </div>
     )

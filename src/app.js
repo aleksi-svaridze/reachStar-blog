@@ -17,9 +17,7 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate()
-
-    // const [storage, setStorage] = useState(false);
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -32,23 +30,24 @@ const App = () => {
         window.localStorage.setItem('isUserLoggedIn', JSON.stringify(isLoggedIn))
     },[isLoggedIn])
 
+    console.log(isLoggedIn)
+
     const loginUserHandler = e => {
         e.preventDefault();
-        axios
-        .post('https://apitest.reachstar.io/signin', {email, password})
-        .then(res => {
-            if(isLoggedIn) {
-                navigate('/')
-            } else {
+
+        if(isLoggedIn) {
+            navigate('/')
+        } else {
+            axios
+            .post('https://apitest.reachstar.io/signin', {email, password})
+            .then(res => {
                 if(res.status === 200) {
                     setIsLoggedIn(true)
                     navigate('/')
-                } else if(isLoggedIn) navigate('/')
-                else navigate('login')
-            }
-           
-        })
-        .catch(err => console.log(err.message))
+                }
+            })
+            .catch(err => console.log(err.message))
+        }
     }
 
     return(
@@ -56,37 +55,42 @@ const App = () => {
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             
             <Routes>
-
-                <Route element={<PrivatRoutes isLoggedIn={isLoggedIn} />}>
-                    <Route path="/" element={<Home />} />
-                    <Route path='blog' element={<Blog/>} />
-                    <Route path="blog/:postId" element={<SinglePost />}>
-                        <Route path="" element={<SinglePost />} />
-                    </Route>
-
-                    <Route path='dashboard' element={<Dashboard />} />
-                    
-                    <Route path='dashboard/:actionsId' element={<Dashboard />}>
-                        <Route path='' element={<Dashboard />} />
-                    </Route>
-
-                    <Route path='dashboard/:actionsId/:Id' element={<Dashboard />}>
-                        <Route path='' element={<Dashboard />} />
-                    </Route>
-                </Route>
                 
-                <Route 
-                    index 
-                    path="login" 
-                    element={
-                    <Login 
-                        email={email} 
-                        setEmail={setEmail} 
-                        password={password} 
-                        setPassword={setPassword} 
-                        loginUserHandler={loginUserHandler} 
-                    />} 
-                />
+
+                {
+                    isLoggedIn ? 
+                    (<Route element={<PrivatRoutes isLoggedIn={isLoggedIn} />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path='blog' element={<Blog/>} />
+                        <Route path="blog/:postId" element={<SinglePost />}>
+                            <Route path="" element={<SinglePost />} />
+                        </Route>
+    
+                        <Route path='dashboard' element={<Dashboard />} />
+                        
+                        <Route path='dashboard/:actionsId' element={<Dashboard />}>
+                            <Route path='' element={<Dashboard />} />
+                        </Route>
+    
+                        <Route path='dashboard/:actionsId/:Id' element={<Dashboard />}>
+                            <Route path='' element={<Dashboard />} />
+                        </Route>
+                    </Route>) : 
+                    (
+                    <Route 
+                        index 
+                        path="login" 
+                        element={
+                            <Login 
+                                email={email} 
+                                setEmail={setEmail} 
+                                password={password} 
+                                setPassword={setPassword} 
+                                loginUserHandler={loginUserHandler} 
+                        />} 
+                    />
+                    )
+                }
                 <Route path="registration" element={<Registration />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
