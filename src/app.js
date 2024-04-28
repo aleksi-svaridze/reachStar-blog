@@ -10,7 +10,7 @@ import axios from 'axios';
 
 
 import { PrivatRoutes } from "./routes/PrivatRoutes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dashboard from "./pages/dashboard/Dashboard";
 
 const App = () => {
@@ -19,18 +19,36 @@ const App = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate()
 
+    // const [storage, setStorage] = useState(false);
+
+
+    useEffect(()=>{
+        let data = window.localStorage.getItem('isUserLoggedIn');
+        if(data !== null) setIsLoggedIn(JSON.parse(data));
+    }, [])
+
+
+    useEffect(() => {
+        window.localStorage.setItem('isUserLoggedIn', JSON.stringify(isLoggedIn))
+    },[isLoggedIn])
+
     const loginUserHandler = e => {
         e.preventDefault();
-        axios.post('https://apitest.reachstar.io/signin', {
-            email, password
-        })
-            .then(res => {
+        axios
+        .post('https://apitest.reachstar.io/signin', {email, password})
+        .then(res => {
+            if(isLoggedIn) {
+                navigate('/')
+            } else {
                 if(res.status === 200) {
                     setIsLoggedIn(true)
                     navigate('/')
-                }
-            })
-            .catch(err => console.log(err.message))
+                } else if(isLoggedIn) navigate('/')
+                else navigate('login')
+            }
+           
+        })
+        .catch(err => console.log(err.message))
     }
 
     return(
@@ -55,8 +73,6 @@ const App = () => {
                     <Route path='dashboard/:actionsId/:Id' element={<Dashboard />}>
                         <Route path='' element={<Dashboard />} />
                     </Route>
-                  
-                    
                 </Route>
                 
                 <Route 

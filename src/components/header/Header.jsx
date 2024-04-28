@@ -1,14 +1,15 @@
-import { NavLink, Link } from "react-router-dom"
-import { useState, useEffect } from "react";
-import scrollToTop from '../../functions/scrolToTop'
+import { NavLink, Link } from "react-router-dom";
+import scrollToTop from '../../functions/scrolToTop';
 import { useWindowSize } from "@uidotdev/usehooks";
+import { useState, useEffect } from "react";
+import MobileMenu from "../mobileMenu/MobileMenu";
 
-export const Header = ({isLoggedIn, setIsLoggedIn}) => {
-    const [isMenuVisible, setIsMenuVisible] = useState(false);
+export const Header = ({isLoggedIn, setIsLoggedIn}) => { 
+    const [isOpen, setIsOpen] = useState(false);
     let {width} = useWindowSize();
 
     useEffect(() => {
-        width >= 768 && setIsMenuVisible(false);
+        width >= 768 && setIsOpen(false);
     }, [width])
 
     return(
@@ -44,59 +45,22 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
                             to={'/registration'}>Register</NavLink>)
                     }
                 </nav>
-                <div
-                    onClick={() => {
-                        setIsMenuVisible(!isMenuVisible);
-                        scrollToTop();
-                    }} 
-                    className="md:hidden cursor-pointer">
-                        <ion-icon className="w-8 h-8" name="menu-outline"></ion-icon>
-                </div>
 
-                <div
-                    className={`items-center pt-10 flex flex-col gap-y-5 md:hidden w-2/3 bg-blue-100 border-l border-t md:bg-transparent duration-500 ${isMenuVisible ? 'right-0' : '-right-full'} lg:static fixed top-[66px] bottom-0`}
-                >
-                    <NavLink 
-                        className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`} 
-                        onClick={scrollToTop} to={'/'}
-                    >
-                        Home
-                    </NavLink> 
-                    <NavLink 
-                        className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                        onClick={scrollToTop} to={'/blog'}
-                    >
-                        Blog
-                    </NavLink>
-                    {
-                        isLoggedIn && (
-                            <NavLink 
-                                className={`text-blue-500 font-opensans font-semibold text-base mx-5 tracking-wide`}  
-                                onClick={scrollToTop} to={'/dashboard'}
-                            >
-                                dashboard
-                            </NavLink>
-                        )
-                    }
-                    <NavLink 
-                        onClick={() => {
-                            setIsLoggedIn(false)
-                        }}
-                        className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
-                        to={`${isLoggedIn && '/login'}`}
-                    >
-                        {
-                            isLoggedIn ? 'Log Out' : 'Log In' 
-                        }
-                    </NavLink>
-                    {
-                            isLoggedIn ? '' : (<NavLink 
-                                className={`text-blue-500 font-opensans font-semibold text-base text-center border-2 py-2 w-[100px] rounded-full border-blue-500 tracking-wide`}  
-                                to={'/registration'}
-                            >
-                                Register
-                            </NavLink>)
-                    }
+                <div 
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="md:hidden cursor-pointer">
+                {
+                    isOpen 
+                    ? 
+                    <ion-icon name="close-outline" className="w-8 h-8"></ion-icon>
+                    : 
+                    <ion-icon className="w-8 h-8" name="menu-outline"></ion-icon>
+                }              
+                <MobileMenu 
+                    isOpen={isOpen} 
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn} 
+                />    
                 </div>
             </header>
         </div>
