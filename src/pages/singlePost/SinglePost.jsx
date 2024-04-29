@@ -4,7 +4,6 @@ import {useParams, Link} from 'react-router-dom';
 import Image from '../../assets/images/card.png';
 import User_1 from '../../assets/images/users/user_1.jpg';
 import scrolToTop from '../../functions/scrolToTop'
-import Footer from "../../components/footer/Footer";
 import Comment from "../../components/comments/Comment";
 import { months } from "../../utils/Date";
 
@@ -72,7 +71,7 @@ const SinglePost = () => {
                                 </div>
                             </div>
                             
-                            <Comment postId={postId} post={post} />
+                            <Comment postId={postId} />
                         </div>
                     </div>
 
@@ -99,7 +98,6 @@ const SinglePost = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

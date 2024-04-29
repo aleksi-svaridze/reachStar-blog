@@ -29,7 +29,7 @@ const RenderAddArticle = () => {
         setTitle('');
         setDescription('');
 
-        navigate('/dashboard');
+        navigate('/');
         scrollToTop();
        
     }

@@ -6,7 +6,6 @@ import scrollToTop from "../../functions/scrolToTop";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Footer from "../../components/footer/Footer";
 
 
 const Home = () => {
@@ -47,7 +46,6 @@ const Home = () => {
                     </Link>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
