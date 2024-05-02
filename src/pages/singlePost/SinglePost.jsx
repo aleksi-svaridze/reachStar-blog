@@ -33,8 +33,8 @@ const SinglePost = () => {
     return(
         <div className="mt-[64px] lg:mt-[100px]">
             <div className="container mx-auto px-5">
-                <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-5 py-12">
-                    <div className="grid lg:col-span-2">
+                <div className="grid grid-cols-1 lg:grid-cols-5 xl:grid-cols-3 lg:gap-x-7 py-12 gap-y-10 lg:gap-y-0">
+                    <div className="grid lg:col-span-3 xl:col-span-2">
                         <div className="flex flex-col">
                             <h1 
                                 className="pb-[50px] text-blue-500 text-xl md:text-2xl lg:text-5xl font-bold"
@@ -75,26 +75,41 @@ const SinglePost = () => {
                         </div>
                     </div>
 
-                    <div className="">
-                        <h2 className="pb-[50px] lg:leading-[56px] text-blue-500 text-lg md:text-xl lg:text-2xl lg:text-center font-bold">Suggested posts</h2>
+                    <div className="lg:col-span-2 xl:col-span-1 shadow-xl px-5 py-6 rounded-lg h-min">
+                        <h2 className="lg:leading-[56px] text-blue-500 text-lg md:text-xl lg:text-2xl pb-3 font-bold">
+                            Suggested posts
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:block gap-5">
                         {
                             posts ? posts.slice(0, 5).filter(post => post.id !== Number(postId)).map(post => (
                                 <Link 
                                     to={`/blog/${post.id}`} 
-                                    className="flex gap-x-3 mb-4 border rounded-lg overflow-hidden hover:shadow max-h-20" 
+                                    className="flex gap-x-3 mb-4 overflow-hidden max-h-20" 
                                     key={post.id}
                                     onClick={scrolToTop}
                                 >
-                                    <img src={Image} alt="" className="w-20 h-20" />
-                                    <div className="relative w-full">
-                                        <h2 className="pt-3 font-bold text-sm py-1 leading-none" dangerouslySetInnerHTML={{__html: post.title.substring(0,50)}}/>
-                                        <p className="text-xs" dangerouslySetInnerHTML={{__html: post.description}}/>
-                                        <span className="absolute bottom-0 right-0 left-0 h-10 bg-gradient-to-b from-transparent to-white"></span>
+                                    <img src={Image} alt="" className="w-[60px] h-[60px] md:w-20 md:h-20 rounded-xl" />
+                                    <div className="">
+                                        <div className="flex">
+                                            <h2 
+                                                className="font-bold text-sm md:text-base lg:text-lg text-blue-dark pb-1 leading-[22px] md:leading-[27px]" 
+                                                dangerouslySetInnerHTML={{__html: post.title.length >= 50 ? post.title.substring(0,50) + '..' : post.title}}
+                                            />
+                                        </div>
+                                       
+                                        <p className="font-opensans text-[10px] lg:text-xs text-black font-thin">
+                                            {`
+                                                ${months[new Date(post.updated_at).getMonth()]}
+                                                ${new Date(post.updated_at).getDate()},
+                                                ${new Date(post.updated_at).getFullYear()}
+                                            `}
+                                        </p>
                                     </div>
                                 </Link>
                             )) :
                             'Loading..'
                         }
+                        </div>
                     </div>
                 </div>
             </div>

@@ -70,9 +70,9 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
                 {
                     isOpen 
                     ? 
-                    <ion-icon name="close-outline" className="w-8 h-8"></ion-icon>
+                    <ion-icon size='large' name="close-outline" style={{color: '#3A4C66'}}></ion-icon>
                     : 
-                    <ion-icon className="w-8 h-8" name="menu-outline"></ion-icon>
+                    <ion-icon size='large' name="menu-outline" style={{color: '#3A4C66'}}></ion-icon>
                 }              
                 <MobileMenu 
                     isOpen={isOpen} 
