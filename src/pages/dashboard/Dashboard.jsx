@@ -25,7 +25,7 @@ const Dashboard = () => {
     return(
         <div className="mt-[64px] lg:mt-[100px]">
             <div className="container mx-auto px-5">
-                <h1 className="py-[50px] text-blue-500 leading-10 md:leading-[60px] lg:leading-[68px] text-[31px] md:text-5xl lg:text-[56px] font-bold font-roboto">Dashboard</h1>
+                <h1 className="py-[50px] text-blue-500 leading-10 md:leading-[60px] lg:leading-[68px] text-[31px] md:text-5xl lg:text-[56px] font-bold">Dashboard</h1>
 
                 <div className="grid grid-cols-12 gap-x-3 md:gap-x-5 lg:gap-x-10 pb-28">
                     <div className="grid col-span-2 md:col-span-4 lg:col-span-3 p-2">

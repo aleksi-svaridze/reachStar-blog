@@ -37,7 +37,7 @@ const RenderAddArticle = () => {
     return(
         <form> 
             <div className='flex flex-col gap-y-2'>
-                <label className='capitalize font-bold font-roboto text-blue-500'>Add Article title</label>
+                <label className='capitalize font-bold text-blue-500'>Add Article title</label>
                 <ReactQuill 
                     placeholder='Write the title'
                     value={title} 
@@ -47,7 +47,7 @@ const RenderAddArticle = () => {
             </div>
 
             <div className='flex flex-col gap-y-2 mt-20'>
-                <label className='capitalize font-bold font-roboto text-blue-500'>Add Article description content</label>
+                <label className='capitalize font-bold text-blue-500'>Add Article description content</label>
                 <ReactQuill 
                     placeholder='Write the description'
                     value={description} 
@@ -57,7 +57,7 @@ const RenderAddArticle = () => {
             </div>
 
             <button 
-                className='rounded-lg py-2 px-4 bg-blue-light text-white font-medium font-roboto mt-5'
+                className='rounded-lg py-2 px-4 bg-blue-light text-white font-medium mt-5'
                 onClick={(e) => handleArticleData(e)}
             >
                 Add article

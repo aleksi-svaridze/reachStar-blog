@@ -18,7 +18,7 @@ const AddComment = ({postId}) => {
     return(
         <form className="mt-6">
             <textarea 
-                className="w-full border rounded-lg mb-8 h-28 focus:outline-none p-3 font-roboto text-blue-200"
+                className="w-full border rounded-lg mb-8 h-28 focus:outline-none p-3 text-blue-200"
                 value={addComment} 
                 name="comment"
                 onChange={(e) => setAddComment(e.target.value)}

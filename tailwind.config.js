@@ -13,7 +13,7 @@ module.exports = {
         },
         'blue-light': '#1565D8',
         'blue-dark': '#0D2436'
-      },
+      }
     },
     fontFamily: {
       roboto: ["Roboto", "sans-serif"],

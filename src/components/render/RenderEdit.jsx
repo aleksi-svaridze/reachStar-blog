@@ -44,7 +44,7 @@ const RenderEditArticle = () => {
         <div className='flex gap-5 flex-col'>           
             {   Id ? (<form>
                         <div className='flex flex-col gap-y-2'>
-                            <label className='capitalize font-bold font-roboto text-blue-500'>Edit Article title</label>
+                            <label className='capitalize font-bold text-blue-500'>Edit Article title</label>
                             <ReactQuill
                                 value={title}
                                 onChange={setTitle}
@@ -52,7 +52,7 @@ const RenderEditArticle = () => {
                         </div>
 
                         <div className='flex flex-col gap-y-2 mt-10'>
-                            <label className='capitalize font-bold font-roboto text-blue-500'>Edit Article description</label>
+                            <label className='capitalize font-bold text-blue-500'>Edit Article description</label>
                             <ReactQuill
                                 value={description}
                                 onChange={setDescription}
@@ -60,7 +60,7 @@ const RenderEditArticle = () => {
                         </div>
 
                         <button 
-                            className='rounded-lg py-2 px-4 bg-blue-light text-white font-medium font-roboto mt-5'
+                            className='rounded-lg py-2 px-4 bg-blue-light text-white font-medium mt-5'
                             onClick={e => handleEdit(e)}>
                                 Save changes
                         </button>

@@ -37,7 +37,7 @@ const SinglePost = () => {
                     <div className="grid lg:col-span-2">
                         <div className="flex flex-col">
                             <h1 
-                                className="pb-[50px] text-blue-500 text-xl md:text-2xl lg:text-5xl font-bold font-roboto"
+                                className="pb-[50px] text-blue-500 text-xl md:text-2xl lg:text-5xl font-bold"
                                 dangerouslySetInnerHTML={{__html: post.title}} />
                             <img className="w-full rounded-lg" src={post.image ? post.image : Image} alt=""/>
                             
@@ -76,7 +76,7 @@ const SinglePost = () => {
                     </div>
 
                     <div className="">
-                        <h2 className="pb-[50px] lg:leading-[56px] text-blue-500 text-lg md:text-xl lg:text-2xl lg:text-center font-bold font-roboto">Suggested posts</h2>
+                        <h2 className="pb-[50px] lg:leading-[56px] text-blue-500 text-lg md:text-xl lg:text-2xl lg:text-center font-bold">Suggested posts</h2>
                         {
                             posts ? posts.slice(0, 5).filter(post => post.id !== Number(postId)).map(post => (
                                 <Link 

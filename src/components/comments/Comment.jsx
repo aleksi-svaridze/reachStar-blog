@@ -34,7 +34,7 @@ export default function Comment({postId}) {
                             />
                         </div>
 
-                        <div className="font-roboto">
+                        <div className="">
                             <h4 className="font-bold text-base mb-2">
                                 Comment ID - {comment.id}
                                 <span className="block font-normal text-xs">

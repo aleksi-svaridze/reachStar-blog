@@ -22,7 +22,7 @@ const Home = () => {
         <div className="mt-[64px] lg:mt-[100px]">
             <Hero />
             <div className="container mx-auto -mt-[200px] px-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     posts.slice(0, 12).map(post => (
                         <Card 
@@ -30,8 +30,9 @@ const Home = () => {
                             post={post} 
                             url={`blog/${post.id}`} 
                             key={post.id}
-                            textLimits={true}
+                            textLimits={80}
                             scrolToTop={scrollToTop}
+                            authorImage={PostImage}
                         />
                     ))
                 }
