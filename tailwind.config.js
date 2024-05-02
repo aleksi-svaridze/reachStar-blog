@@ -10,6 +10,7 @@ module.exports = {
           100: '#f9fcff',
           200: '#5A7184',
           500: "#183B56",
+          600: '#1565D8'
         },
         'blue-light': '#1565D8',
         'blue-dark': '#0D2436'
