@@ -16,17 +16,17 @@ const AddComment = ({postId}) => {
     }
 
     return(
-        <form className="mt-6">
+        <form className="mt-6 relative h-40">
             <textarea 
-                className="w-full border rounded-lg mb-8 h-28 focus:outline-none p-3 text-blue-200"
+                className="w-full border rounded-lg mb-8 h-full focus:outline-none p-3 text-blue-200"
                 value={addComment} 
                 name="comment"
                 onChange={(e) => setAddComment(e.target.value)}
                 ></textarea>
             <button 
-                className="bg-blue-light text-white py-2 px-4 rounded-lg ml-auto mr-0 block"
+                className="bg-blue-light text-white py-2 px-6 rounded-lg right-2 bottom-2 absolute capitalize"
                 onClick={e => handleAddNewComment(e)}>
-                    Add comment
+                    send
             </button>
         </form>
     )

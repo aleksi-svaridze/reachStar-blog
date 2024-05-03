@@ -46,7 +46,9 @@ export default function Comment({postId}) {
                                     `}
                                 </span>
                             </h4>
-                            <p className="text-sm" dangerouslySetInnerHTML={{__html: comment.comment}}/>
+                            <p className="text-sm">
+                                {comment.comment}
+                            </p>
                         </div>
                         <DeleteComment 
                             comment={comment} 
