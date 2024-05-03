@@ -4,7 +4,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { useState, useEffect } from "react";
 import MobileMenu from "../mobileMenu/MobileMenu";
 
-export const Header = ({isLoggedIn, setIsLoggedIn}) => { 
+export const Header = ({isLoggedIn, setIsLoggedIn, isMainPage}) => { 
     const [isOpen, setIsOpen] = useState(false);
     let {width} = useWindowSize();
 
@@ -13,7 +13,7 @@ export const Header = ({isLoggedIn, setIsLoggedIn}) => {
     }, [width])
 
     return(
-        <div className=" bg-blue-100 fixed left-0 right-0 top-0 z-10">
+        <div className={`${isMainPage ? 'bg-blue-100 ' : 'bg-white'} fixed left-0 right-0 top-0 z-10`}>
             <header className="lg:py-8 xl:py-9 py-[21px] container mx-auto flex justify-between items-center px-5">
                 <Link 
                     onClick={scrollToTop} 

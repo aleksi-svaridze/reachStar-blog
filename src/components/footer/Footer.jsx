@@ -1,10 +1,15 @@
 import FooterBg from '../../assets/images/footer/Wave.svg'
 import FacobookCardImage from '../../assets/images/footer/facebook_card.png'
 
-const Footer = () => {
+const Footer = ({isMainPage}) => {
+
+  
+    
     return(
         <footer>
-            <img src={FooterBg} alt='footer background' className='w-full -mb-1' />
+            {
+                isMainPage && <img src={FooterBg} alt='footer background' className='w-full -mb-1' />
+            }
             <div className='bg-blue-dark pt-10'>
                 <div className="container mx-auto px-5">
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-6'>

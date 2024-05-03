@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate, useLocation} from "react-router-dom"
 import axios from 'axios';
 import { useEffect, useState } from "react";
 
@@ -18,6 +18,17 @@ const App = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [isMainPage, setIsMainPage] = useState(false);
+
+    let location = useLocation();
+
+    useEffect(() => {
+        if(location.pathname === '/') {
+            setIsMainPage(true)
+        } else {
+            setIsMainPage(false)
+        }
+    }, [location.pathname])
 
 
     useEffect(() => {
@@ -43,9 +54,11 @@ const App = () => {
             .catch(err => console.log(err.message))
     }
 
+    
+
     return(
         <div className="font-roboto">
-            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isMainPage={isMainPage} />
             <Routes>
           
                 {
@@ -99,7 +112,7 @@ const App = () => {
                 <Route path="registration" element={<Registration />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer />
+            <Footer isMainPage={isMainPage} />
         </div>
     )
 }
