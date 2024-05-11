@@ -12,6 +12,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
 import NotFound from "./pages/notFound/NotFound";
 
+// TODO: => ლოგინის ვალიდაცია დასასრულებელია <=
+
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,6 +21,7 @@ const App = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [isMainPage, setIsMainPage] = useState(false);
+    const [isError] = useState(false)
 
     let location = useLocation();
 
@@ -30,17 +33,6 @@ const App = () => {
         }
     }, [location.pathname])
 
-
-    useEffect(() => {
-        let data = window.localStorage.getItem('isUserLoggedIn');
-        if(data !== null) setIsLoggedIn(JSON.parse(data));
-    }, [])
-
-
-    useEffect(() => {
-        window.localStorage.setItem('isUserLoggedIn', JSON.stringify(isLoggedIn))
-    },[isLoggedIn])
-
     const loginUserHandler = e => {
         e.preventDefault();
         axios
@@ -51,9 +43,21 @@ const App = () => {
                     navigate('/')
                 }
             })
-            .catch(err => console.log(err.message))
+            .catch(err => {
+                if(err.response.data.error === 'not logged in') alert('შეყვანილი პაროლი ან მაილი არასწორია!')
+            })
     }
 
+
+    useEffect(() => {
+        let data = window.localStorage.getItem('isUserLoggedIn');
+        if(data !== null) setIsLoggedIn(JSON.parse(data));
+    }, [])
+
+
+    useEffect(() => {
+        window.localStorage.setItem('isUserLoggedIn', JSON.stringify(isLoggedIn))
+    },[isLoggedIn])
     
 
     return(
@@ -92,6 +96,7 @@ const App = () => {
                                     password={password} 
                                     setPassword={setPassword} 
                                     loginUserHandler={loginUserHandler} 
+                                    isError={isError}
                         />} >
                             <Route 
                                 index 
