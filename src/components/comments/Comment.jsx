@@ -27,7 +27,7 @@ export default function Comment({postId}) {
 
                     <h3 className='capitalize text-[#283646] font-bold text-base mb-8 font-raleway'>All Comments ({comments.length})</h3>
 
-                    {comments && comments.map(comment => (
+                    {comments && comments.reverse().map(comment => (
                         <div 
                             key={comment.id} 
                             className="bg-[#F2F4F5] relative text-blue-200 p-3 pb-5 rounded-md mb-5 last:mb-0 flex gap-x-5">
@@ -52,9 +52,7 @@ export default function Comment({postId}) {
                                         `}
                                     </span>
                                 </h4>
-                                <p className="text-sm">
-                                    {comment.comment}
-                                </p>
+                                <div className="text-sm" dangerouslySetInnerHTML={{__html: comment.comment}} />
                             </div>
                             <DeleteComment 
                                 comment={comment} 
