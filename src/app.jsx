@@ -17,11 +17,8 @@ import NotFound from "./pages/notFound/NotFound";
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [isMainPage, setIsMainPage] = useState(false);
-    const [isError] = useState(false)
 
     let location = useLocation();
 
@@ -33,19 +30,16 @@ const App = () => {
         }
     }, [location.pathname])
 
-    const loginUserHandler = e => {
-        e.preventDefault();
+    const loginUserHandler = data => {
         axios
-            .post('https://apitest.reachstar.io/signin', {email, password})
+            .post('https://apitest.reachstar.io/signin', {email: data.email, password: data.password})
             .then(res => {
                 if(res.status === 200) {
                     setIsLoggedIn(true)
                     navigate('/')
                 }
             })
-            .catch(err => {
-                if(err.response.data.error === 'not logged in') alert('შეყვანილი პაროლი ან მაილი არასწორია!')
-            })
+            .catch(err => alert('Enter valid information'))
     }
 
 
@@ -91,26 +85,11 @@ const App = () => {
                         <Route 
                             path="" 
                             element={ <Login 
-                                    email={email} 
-                                    setEmail={setEmail} 
-                                    password={password} 
-                                    setPassword={setPassword} 
-                                    loginUserHandler={loginUserHandler} 
-                                    isError={isError}
-                        />} >
+                                    loginUserHandler={loginUserHandler}/>}>
                             <Route 
                                 index 
                                 path="login" 
-                                element={
-                                    <Login 
-                                        email={email} 
-                                        setEmail={setEmail} 
-                                        password={password} 
-                                        setPassword={setPassword} 
-                                        loginUserHandler={loginUserHandler} 
-                                    />
-                                } 
-                            />
+                                element={<Login loginUserHandler={loginUserHandler} />} />
                         </Route>
                     </>)
                 }

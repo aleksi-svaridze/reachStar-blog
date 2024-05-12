@@ -3,7 +3,6 @@ import Hero from "../../components/hero/Hero";
 import PostImage from '../../assets/images/card.png'
 import { Link } from "react-router-dom";
 import scrollToTop from "../../functions/scrolToTop";
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -24,7 +23,7 @@ const Home = () => {
             <div className="container mx-auto -mt-[200px] px-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    posts.slice(0, 12).map(post => (
+                    posts.slice(0, 12).reverse().map(post => (
                         <Card 
                             image={PostImage} 
                             post={post} 

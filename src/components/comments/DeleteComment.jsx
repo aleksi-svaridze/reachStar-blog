@@ -3,7 +3,7 @@ import axios from 'axios'
 const DeleteComment = ({comment, setComments, comments}) => {
     const handleDeleteComment = commentId => {
         axios.delete(`https://apitest.reachstar.io/comment/delete/${commentId}`);
-        setComments(comments.filter(comment => comment.id !== commentId));
+        setComments(comments.filter(comment => comment.id !== commentId).reverse());
     }
 
     return(
