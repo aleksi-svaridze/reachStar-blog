@@ -3,6 +3,8 @@ import scrollToTop from '../../functions/scrolToTop';
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useState, useEffect } from "react";
 import MobileMenu from "../mobileMenu/MobileMenu";
+import Logo from '../../assets/images/header/star.png'
+
 
 export const Header = ({isLoggedIn, setIsLoggedIn, isMainPage}) => { 
     const [isOpen, setIsOpen] = useState(false);
@@ -13,13 +15,14 @@ export const Header = ({isLoggedIn, setIsLoggedIn, isMainPage}) => {
     }, [width])
 
     return(
-        <div className={`${isMainPage ? 'bg-blue-100 ' : 'bg-white'} fixed left-0 right-0 top-0 z-10`}>
+        <div className={`${isMainPage ? 'bg-blue-100' : 'bg-white'} fixed left-0 right-0 top-0 z-10`}>
             <header className="lg:py-8 xl:py-9 py-[21px] container mx-auto flex justify-between items-center px-5">
                 <Link 
                     onClick={scrollToTop} 
                     to={isLoggedIn ? '/' : '/login'} 
-                    className="text-xl md:text-4xl font-bold font-roboto text-blue-500">
-                        Blog
+                    className="text-xl text-[#ecb313] gap-x-2 flex items-center font-bold font-roboto">
+                        <img src={Logo} alt="" className="h-10 rotate-90" />
+                        Reach Star
                 </Link>
                 <nav className="items-center hidden md:flex">
                     

@@ -64,7 +64,9 @@ const RenderEditArticle = () => {
                             onClick={e => handleEdit(e)}>
                                 Save changes
                         </button>
-                    </form>) : posts && posts.map(post => (
+                    </form>) 
+                    :
+                    posts && posts.reverse().map(post => (
                     <DashboardCard 
                         post={post} 
                         url={`${post.id}`} 
