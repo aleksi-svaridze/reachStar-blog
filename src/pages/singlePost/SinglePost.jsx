@@ -62,7 +62,7 @@ const SinglePost = () => {
                                             ${new Date(post.created_at).getDate()} 
                                             ${months[new Date(post.created_at).getMonth()]} 
                                             ${new Date(post.created_at).getFullYear()}, 
-                                            ${new Date(post.created_at).getHours()}:${new Date(post.created_at).getMinutes()}
+                                            ${new Date(post.created_at).getHours()}:${ (new Date(post.created_at).getMinutes() === 0 || new Date(post.created_at).getMinutes() < 10) ? new Date(post.created_at).getMinutes() + "0" : new Date(post.created_at).getMinutes() }
                                         `}
                                     </span>
                                     <span>
@@ -71,7 +71,7 @@ const SinglePost = () => {
                                             ${new Date(post.updated_at).getDate()} 
                                             ${months[new Date(post.updated_at).getMonth()]} 
                                             ${new Date(post.updated_at).getFullYear()}, 
-                                            ${new Date(post.updated_at).getHours()}:${new Date(post.updated_at).getMinutes()}
+                                            ${new Date(post.updated_at).getHours()}:${ (new Date(post.created_at).getMinutes() === 0 || new Date(post.created_at).getMinutes() < 10) ? new Date(post.created_at).getMinutes() + "0" : new Date(post.created_at).getMinutes() }
                                         `}
                                     </span>
                                 </div>

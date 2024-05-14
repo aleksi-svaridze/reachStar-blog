@@ -15,7 +15,7 @@ export const Card = ({post, image, url, scrolToTop, textLimits, authorImage}) =>
             <img src={image} alt="" className='w-full' />
             <div className='py-[22px] px-5 md:px-6 md:py-6 lg:px-8 lg:py-[26px]'>
                 <h3 
-                    className='text-blue-500 font-bold text-[20px] md:text-2xl lg:text-[28px] leading-6 md:leading-8 lg:leading-9 min-h-12 md:min-h-16 lg:min-h-[72px]' 
+                    className='text-blue-500 font-bold text-[20px] md:text-2xl lg:text-[28px] leading-6 md:leading-8 lg:leading-9 h-12 overflow-hidden text-ellipsis md:h-16 lg:h-[72px]' 
                     dangerouslySetInnerHTML={{__html: post.title}} 
                 />
                 <p 

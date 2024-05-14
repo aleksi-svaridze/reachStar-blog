@@ -48,7 +48,7 @@ export default function Comment({postId}) {
                                             ${new Date(comment.created_at).getDate()} 
                                             ${months[new Date(comment.created_at).getMonth()]} 
                                             ${new Date(comment.created_at).getFullYear()}, 
-                                            ${new Date(comment.created_at).getHours()}:${new Date(comment.created_at).getMinutes()}
+                                            ${new Date(comment.created_at).getHours()}:${ (new Date(comment.created_at).getMinutes() === 0 || new Date(comment.created_at).getMinutes() < 10) ? new Date(comment.created_at).getMinutes() + "0" : new Date(comment.created_at).getMinutes() }
                                         `}
                                     </span>
                                 </h4>
