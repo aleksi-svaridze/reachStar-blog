@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from '../../assets/images/card.png'
 import scrolToTop from '../../functions/scrolToTop'
+import Head from "../../seo/Head";
 
 import {Card} from '../../components/Cards/Card'
 
@@ -19,6 +20,7 @@ const Blog = () => {
 
     return(
         <div className="mt-[64px] lg:mt-[100px]">
+            <Head title={'blog page'} desc={'description - blog page'} url={'http://localhost:3000/blog'} />
             <div className="container mx-auto px-5">
                 <h1 className="py-[50px] text-blue-500 leading-10 md:leading-[60px] lg:leading-[68px] text-[31px] md:text-5xl lg:text-[56px] font-bold">All posts</h1>
 

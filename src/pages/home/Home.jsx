@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import scrollToTop from "../../functions/scrolToTop";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Head from "../../seo/Head";
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
     }, [])
     return(
         <div className="mt-[64px] lg:mt-[100px]">
+            <Head title={'Home page'} desc={'description - home page'} url={`http://localhost:3000/`} />
             <Hero />
             <div className="container mx-auto -mt-[200px] px-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
