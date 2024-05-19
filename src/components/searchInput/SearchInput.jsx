@@ -24,7 +24,7 @@ const SearchInput = ({setSearchArticle}) => {
                     e.preventDefault()
                     setSearchArticle(searchTerm)
                 }}
-                className="h-12 sm:h-[40px] sm:absolute sm:right-2 sm:top-[50%] sm:-translate-y-[50%] sm:w-[94px] rounded-lg bg-blue-600 text-white w-full font-opensans text-base font-bold capitalize"
+                className="h-12 sm:h-[40px] sm:absolute sm:right-2 sm:top-[50%] sm:-translate-y-[50%] sm:w-[94px] rounded-lg bg-blue-600 text-white w-full font-opensans text-base font-bold capitalize focus:outline-none"
             >
                 search
             </button>

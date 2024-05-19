@@ -5,9 +5,11 @@ import scrolToTop from '../../functions/scrolToTop'
 import Head from "../../seo/Head";
 
 import {Card} from '../../components/Cards/Card'
+import SearchInput from "../../components/searchInput/SearchInput";
 
 const Blog = () => {
     const [posts, setPosts] = useState([]);
+    const [searchArticle, setSearchArticle] = useState('')
     
     useEffect(() => {
         axios
@@ -22,11 +24,18 @@ const Blog = () => {
         <div className="mt-[64px] lg:mt-[100px]">
             <Head title={'blog page'} desc={'description - blog page'} url={'http://localhost:3000/blog'} />
             <div className="container mx-auto px-5">
-                <h1 className="py-[50px] text-blue-500 leading-10 md:leading-[60px] lg:leading-[68px] text-[31px] md:text-5xl lg:text-[56px] font-bold">All posts</h1>
-
+                <h1 className="py-[50px] text-blue-500 leading-10 md:leading-[60px] lg:leading-[68px] text-[31px] md:text-5xl lg:text-[56px] font-bold sm:text-center">All posts</h1>
+                <div className="mb-12 mx-auto sm:w-[500px] md:w-[600px] lg:w-[800px]">
+                    <SearchInput setSearchArticle={setSearchArticle} />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pb-28">
-                    {
-                        posts.reverse().map(post => (
+                    
+                    {   
+                        // eslint-disable-next-line array-callback-return
+                        posts.filter(post => {
+                            if(searchArticle === '') return post;
+                            else if(post.title.toLowerCase().includes(searchArticle.toLowerCase().trim())) return post;
+                        }).map(post => (
                             <Card 
                                 image={Image} 
                                 post={post} 

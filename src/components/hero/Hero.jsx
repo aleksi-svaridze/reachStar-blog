@@ -1,7 +1,7 @@
 import HeroBg from '../../assets/images/hero/hero_bg_new.png'
 import SearchInput from '../searchInput/SearchInput';
 
-const Hero =({ searchArticle, setSearchArticle}) => {
+const Hero =({setSearchArticle}) => {
     return(
         <div className='bg-blue-100 pt-[100px] pb-[300px]'>
             <div className='container mx-auto px-5'>
