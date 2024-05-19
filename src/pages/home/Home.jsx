@@ -10,6 +10,7 @@ import Head from "../../seo/Head";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
+    const [searchArticle, setSearchArticle] = useState('')
 
     useEffect(() => {
         axios.get('https://apitest.reachstar.io/blog/list')
@@ -18,14 +19,23 @@ const Home = () => {
                 console.log(err.message)
             })
     }, [])
+
     return(
         <div className="mt-[64px] lg:mt-[100px]">
             <Head title={'Home page'} desc={'description - home page'} url={`http://localhost:3000/`} />
-            <Hero />
+            <Hero 
+                setSearchArticle={setSearchArticle} 
+            />
+
             <div className="container mx-auto -mt-[200px] px-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
                 {
-                    posts.slice(0, 12).reverse().map(post => (
+                    // eslint-disable-next-line array-callback-return
+                    posts.filter(post => {
+                        if(searchArticle === '') return post;
+                        else if(post.title.toLowerCase().includes(searchArticle.toLowerCase().trim())) return post;
+                    }).map(post => (
                         <Card 
                             image={PostImage} 
                             post={post} 
