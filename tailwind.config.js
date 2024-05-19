@@ -13,7 +13,10 @@ module.exports = {
           600: '#1565D8'
         },
         'blue-light': '#1565D8',
-        'blue-dark': '#0D2436'
+        'blue-dark': '#0D2436',
+        'gray': {
+          300: '#959EAD'
+        }
       }
     },
     fontFamily: {
