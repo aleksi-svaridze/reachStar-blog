@@ -1,4 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useWindowSize } from "@uidotdev/usehooks";
 import RenderMainPage from '../../components/render/RenderMain';
 import RenderAddArticle from "../../components/render/RenderAdd";
@@ -8,7 +9,7 @@ import RenderDeleteArticle from "../../components/render/RenderDelete";
 const Dashboard = () => {
     const {width} = useWindowSize();
     let {actionsId} = useParams();
-
+    const url = useLocation();
 
     let render = '';
 
@@ -30,26 +31,26 @@ const Dashboard = () => {
                 <div className="grid grid-cols-12 gap-x-3 md:gap-x-5 lg:gap-x-10 pb-28">
                     <div className="grid col-span-2 md:col-span-4 lg:col-span-3 p-2">
                         <nav className="flex flex-col gap-y-3">
-                            <Link 
+                            <NavLink 
                                 to={`/dashboard`} 
-                                className='text-blue-500 md:border-b pb-2'>
+                                className={({isActive}) => isActive && url.pathname === '/dashboard' ? 'text-red-500 md:border-b pb-2' : 'text-blue-500 md:border-b pb-2'}>
                                     {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="home-outline" size='small'></ion-icon>All Articles</span>) : <ion-icon name="home-outline" size='large'></ion-icon> }
-                            </Link>
-                            <Link 
+                            </NavLink>
+                            <NavLink 
                                 to={`/dashboard/add`} 
-                                className='text-blue-500 md:border-b pb-2'>
+                                className={({isActive}) => isActive ? 'text-red-500 md:border-b pb-2' : 'text-blue-500 md:border-b pb-2'}>
                                 {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="add-circle-outline" size='small'></ion-icon>Add new article</span>) : <ion-icon name="add-circle-outline" size='large'></ion-icon> }
-                            </Link>
-                            <Link 
+                            </NavLink>
+                            <NavLink 
                                 to='/dashboard/edit' 
-                                className='text-blue-500 md:border-b pb-2'>
+                                className={({isActive}) => isActive ? 'text-red-500 md:border-b pb-2' : 'text-blue-500 md:border-b pb-2'}>
                                 {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="create-outline" size='small'></ion-icon>Edit article</span>) : <ion-icon name="create-outline" size='large'></ion-icon>}
-                            </Link>
-                            <Link 
+                            </NavLink>
+                            <NavLink 
                                 to='/dashboard/delete' 
-                                className='text-blue-500 md:border-b pb-2'>
+                                className={({isActive}) => isActive ? 'text-red-500 md:border-b pb-2' : 'text-blue-500 md:border-b pb-2'}>
                                 {width >= 768 ? (<span className="flex items-center gap-x-2"><ion-icon name="trash-outline" size='small'></ion-icon>Delete article</span>) : <ion-icon name="trash-outline" size='large'></ion-icon>}
-                            </Link>
+                            </NavLink>
                         </nav>
                     </div>
                     <div className="grid gap-y-5 col-span-9 md:col-span-8 lg:col-span-9 p-2">

@@ -42,7 +42,6 @@ const Blog = () => {
                                 url={`${post.id}`} 
                                 key={post.id} 
                                 scrolToTop={scrolToTop}
-                                textLimits={80}
                                 authorImage={Image}
                             />
                         ))

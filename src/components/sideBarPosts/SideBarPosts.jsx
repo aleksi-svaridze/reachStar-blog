@@ -20,9 +20,9 @@ const SideBarPosts = ({posts, postId, Image}) => {
                         <img src={Image} alt="" className="w-[60px] h-[60px] md:w-20 md:h-20 rounded-xl" />
                         <div className="">
                             <div className="flex">
-                                <h2 
-                                    className="font-bold text-sm md:text-base lg:text-lg text-blue-dark pb-1 leading-[22px] md:leading-[27px]" 
-                                    dangerouslySetInnerHTML={{__html: post.title.length >= 50 ? post.title.substring(0,50) + '..' : post.title}}
+                                <div 
+                                    className="font-bold text-sm md:text-base lg:text-lg text-blue-dark line-clamp-2 pb-1" 
+                                    dangerouslySetInnerHTML={{__html: post.title}}
                                 />
                             </div>
                             

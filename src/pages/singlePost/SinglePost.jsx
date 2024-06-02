@@ -41,13 +41,13 @@ const SinglePost = () => {
                 <div className={`grid grid-cols-1 lg:grid-cols-5 xl:grid-cols-3 lg:gap-x-7 pt-12 pb-20 gap-y-10 lg:gap-y-0`}>
                     <div className="grid lg:col-span-3 xl:col-span-2">
                         <div className={``}>
-                            <img className="w-full rounded-xl" src={post.image ? post.image : Image} alt=""/>
+                            <img className="w-full rounded-xl" src={'https://www.sammobile.com/wp-content/uploads/2024/05/Galaxy-Watch-7-Ultra-leaked-2.jpg'} alt=""/>
                             <h3 className="text-blue-600 text-sm md:text-base tracking-widest uppercase mt-3">education</h3>
-                            <h1 
+                            <div 
                                 className="pb-8 pt-6 text-blue-500 text-xl md:text-2xl lg:text-5xl font-bold"
                                 dangerouslySetInnerHTML={{__html: post.title}} 
                             />
-                            <p className="pb-10 text-blue-500 indent-4 text-justify" dangerouslySetInnerHTML={{__html: post.description}} />
+                            <div className="pb-10 text-blue-500 indent-4 text-justify" dangerouslySetInnerHTML={{__html: post.description}} />
 
                             <div className="font-normal text-xs flex flex-col sm:flex-row sm:justify-between capitalize text-blue-200">
                                 <div className="flex gap-x-4 items-center mb-2 sm:mb-0">
@@ -79,22 +79,26 @@ const SinglePost = () => {
                         </div>                       
                     </div>
                     {
-                        width >= 1024 && 
-                        <div className="bg-white lg:col-span-2 xl:col-span-1 shadow-xl px-5 py-6 rounded-lg h-min">
+                        width >= 1024 && posts.length > 1 ?
+                        (<div className="bg-white lg:col-span-2 xl:col-span-1 shadow-xl px-5 py-6 rounded-lg h-min">
                             <SideBarPosts posts={posts} postId={postId} Image={Image} />
-                        </div>
+                        </div>)
+                        :
+                        (<div className="lg:col-span-2 xl:col-span-1"></div>)
                     }
                 </div>
             </div>
         </div>
         <Comment postId={postId} />
         {
-            width < 1024 && 
-                <div className="container mx-auto px-5 pb-10 lg:pb-0">
+            width < 1024 && posts.length > 1 ?
+                (<div className="container mx-auto px-5 pb-10 lg:pb-0">
                     <div className="shadow-xl py-6 px-5 rounded-lg h-min">
                         <SideBarPosts posts={posts} postId={postId} Image={Image} />
                     </div>
-                </div>
+                </div>)
+                :
+                (<></>)
         }
         </>
     )
