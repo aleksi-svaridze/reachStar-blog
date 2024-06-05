@@ -10,25 +10,25 @@ export default function MobileMenu({isOpen, isLoggedIn, setIsLoggedIn}) {
      ${isOpen ? 'right-0' : '-right-full'} lg:static fixed top-[66px] bottom-0`}
 >
 
-        <div className="mt-10 mb-3 font-opensans font-semibold text-base tracking-wide items-center justify-center flex flex-col gap-y-5">
+        <div className="mt-10 mb-3 font-opensans font-semibold text-base tracking-wide items-start justify-center flex flex-col gap-y-5 ml-10">
     {
         isLoggedIn && 
         <>
        
             <NavLink 
-                className={({isActive}) => isActive ? 'text-red-500 mx-5' : 'text-blue-500 mx-5'} 
+                className={({isActive}) => isActive ? 'text-red-500' : 'text-blue-500'} 
                 onClick={scrollToTop} to={'/'}
             >
                 Home
             </NavLink> 
             <NavLink 
-                className={({isActive}) => isActive ? 'text-red-500 mx-5' : 'text-blue-500 mx-5'} 
+                className={({isActive}) => isActive ? 'text-red-500' : 'text-blue-500'} 
                 onClick={scrollToTop} to={'/blog'}
             >
                 Blog
             </NavLink>
             <NavLink 
-                className={({isActive}) => isActive ? 'text-red-500 mx-5' : 'text-blue-500 mx-5'}   
+                className={({isActive}) => isActive ? 'text-red-500' : 'text-blue-500'}   
                 onClick={scrollToTop} to={'/dashboard'}
             >
                 dashboard
@@ -38,7 +38,7 @@ export default function MobileMenu({isOpen, isLoggedIn, setIsLoggedIn}) {
     }
         </div>
 
-        <div className="items-center justify-center flex flex-col gap-y-5">
+        <div className="items-start justify-center flex flex-col gap-y-5 ml-10">
         {
             isLoggedIn ?  
             <Link 
