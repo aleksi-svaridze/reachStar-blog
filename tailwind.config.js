@@ -25,6 +25,9 @@ module.exports = {
       raleway: ["Raleway", "sans-serif"]
     },
   },
-  plugins: [],
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
   darkMode: 'selector',
 }
