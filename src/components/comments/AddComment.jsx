@@ -13,6 +13,7 @@ const AddComment = ({postId}) => {
             .catch(error => console.error(error));
             
         setAddComment('');
+        window.location.reload()
     }
 
     return(
