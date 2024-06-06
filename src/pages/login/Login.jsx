@@ -25,7 +25,7 @@ const Login = ({ setIsLoggedIn }) => {
         })
         .catch(err => {
             if(err.message === 'Request failed with status code 422') {
-                setResponse('User is allready registered')
+                setResponse('User is already registered')
             }
         })
 }

@@ -7,7 +7,6 @@ import Comment from "../../components/comments/Comment";
 import { months } from "../../utils/Date";
 import SideBarPosts from "../../components/sideBarPosts/SideBarPosts";
 import { useWindowSize } from "@uidotdev/usehooks";
-import Head from "../../seo/Head";
 
 const SinglePost = () => {
     const {postId} = useParams();
@@ -35,7 +34,6 @@ const SinglePost = () => {
  
     return(
         <>
-        <Head title={post.title} desc={post.description.substring(0, 170)} url={`http://localhost:3000/${post.id}`} />
         <div className={`my-[64px] lg:mt-[100px] bg-blue-100`}>
             <div className="container mx-auto px-5">
                 <div className={`grid grid-cols-1 lg:grid-cols-5 xl:grid-cols-3 lg:gap-x-7 pt-12 pb-20 gap-y-10 lg:gap-y-0`}>

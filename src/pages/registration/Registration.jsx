@@ -29,7 +29,7 @@ const Registration = () => {
             })
             .catch(err => {
                 if(err.message === 'Request failed with status code 500') {
-                    setResponse('This mail is allready registered')
+                    setResponse('This mail is already registered')
                 }
             })
     }
