@@ -1,36 +1,49 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 
 const Registration = () => {
+    const [response, setResponse] = useState('')
     const navigate = useNavigate()
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm();
+    } = useForm();
 
     const handleFormSubmitter = (data) => {
-        console.log(data)
-        axios.post('https://apitest.reachstar.io/signup', {
-            name: data.name,
-            email: data.email,
-            password: data.password
-        })
-        .then(res => {
-            if(res.status === 200) {
-                navigate('/login')
-            }
-        })
-        .catch(err => console.log(err.message ))
+
+            axios.post('https://apitest.reachstar.io/signup', {
+                name: data.name,
+                email: data.email,
+                password: data.password
+            })
+            .then(res => {
+                if(res.status === 200) {
+                    navigate('/login')
+                }
+            })
+            .catch(err => {
+                if(err.message === 'Request failed with status code 500') {
+                    setResponse('This mail is allready registered')
+                }
+            })
     }
    
 
     return(
         <div className="container mx-auto px-5 py-20 mt-[64px] lg:mt-[100px]">
             <h2 className="text-lg md:text-xl lg:text-3xl text-center text-blue-500 font-bold">Sign Up</h2>
+
+            {
+                response && <p onClick={(e) => {
+                    e.target.style.display = 'none';
+                    window.location.reload();
+                }}  className="text-white fixed z-50 flex items-center justify-center text-2xl  bg-red-500/90 top-[50%] rounded-lg h-40 px-6 left-[50%] -translate-x-[50%] -translate-y-[50%]">{response}</p>
+            }
 
             <form className="max-w-[360px] mx-auto mt-5">
                 <div className="flex flex-col gap-y-1 mb-2 min-h-[92px]">
