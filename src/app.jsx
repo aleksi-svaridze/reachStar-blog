@@ -1,5 +1,4 @@
-import { Routes, Route, useNavigate, useLocation} from "react-router-dom"
-import axios from 'axios';
+import { Routes, Route, useLocation} from "react-router-dom"
 import { useEffect, useState } from "react";
 
 import Home from './pages/home/Home';
@@ -17,7 +16,6 @@ import NotFound from "./pages/notFound/NotFound";
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate();
     const [isMainPage, setIsMainPage] = useState(false);
 
     let location = useLocation();
@@ -29,19 +27,6 @@ const App = () => {
             setIsMainPage(false)
         }
     }, [location.pathname])
-
-    const loginUserHandler = data => {
-        axios
-            .post('https://apitest.reachstar.io/signin', {email: data.email, password: data.password})
-            .then(res => {
-                if(res.status === 200) {
-                    setIsLoggedIn(true)
-                    navigate('/')
-                }
-            })
-            .catch(err => alert('Enter valid information'))
-    }
-
 
     useEffect(() => {
         let data = window.localStorage.getItem('isUserLoggedIn');
@@ -85,11 +70,11 @@ const App = () => {
                         <Route 
                             path="" 
                             element={ <Login 
-                                    loginUserHandler={loginUserHandler}/>}>
+                                     setIsLoggedIn={setIsLoggedIn}/>}>
                             <Route 
                                 index 
                                 path="login" 
-                                element={<Login loginUserHandler={loginUserHandler} />} />
+                                element={<Login  setIsLoggedIn={setIsLoggedIn} />} />
                         </Route>
                     </>)
                 }

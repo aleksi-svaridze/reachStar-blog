@@ -1,19 +1,41 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import Modal from "../../components/modal/Modal";
+import { useState } from "react";
 
-const Login = ({ loginUserHandler }) => {
+const Login = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
+  const [response, setResponse] = useState('');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const loginUserHandler = data => {
+    axios
+        .post('https://apitest.reachstar.io/signin', {email: data.email, password: data.password})
+        .then(res => {
+            if(res.status === 200) {
+                setIsLoggedIn(true)
+                navigate('/')
+            }
+        })
+        .catch(err => {
+            if(err.message === 'Request failed with status code 422') {
+                setResponse('User is allready registered')
+            }
+        })
+}
+
   return (
     <div className="container mx-auto px-5 py-20 mt-[64px] lg:mt-[100px]">
       <h2 className="text-lg md:text-xl lg:text-3xl text-center text-blue-500 font-bold">
         Log In
       </h2>
-
+      {response && <Modal response={response} />}
       <form className="max-w-[360px] mx-auto mt-5">
         <div className="flex flex-col gap-y-1 mb-2 min-h-[92px]">
           <label

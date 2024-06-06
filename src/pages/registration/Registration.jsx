@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import Modal from "../../components/modal/Modal";
 
 
 const Registration = () => {
@@ -39,10 +40,7 @@ const Registration = () => {
             <h2 className="text-lg md:text-xl lg:text-3xl text-center text-blue-500 font-bold">Sign Up</h2>
 
             {
-                response && <p onClick={(e) => {
-                    e.target.style.display = 'none';
-                    window.location.reload();
-                }}  className="text-white fixed z-50 flex items-center justify-center text-2xl  bg-red-500/90 top-[50%] rounded-lg h-40 px-6 left-[50%] -translate-x-[50%] -translate-y-[50%]">{response}</p>
+                response && <Modal response={response} />
             }
 
             <form className="max-w-[360px] mx-auto mt-5">
