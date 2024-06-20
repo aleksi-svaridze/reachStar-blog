@@ -15,7 +15,7 @@ export const Card = ({post, image, url, scrolToTop, authorImage}) => {
             <img src={image} alt="" className='w-full' />
             <div className='py-[22px] px-5 md:px-6 md:py-6 lg:px-8 lg:py-[26px]'>
                 <div
-                    className='text-blue-500 font-bold text-[20px] md:text-2xl lg:text-[28px] line-clamp-2' 
+                    className='text-blue-500 font-bold text-[20px] leading-[28px] md:text-2xl lg:text-[28px] lg:leading-[36px] line-clamp-2' 
                     dangerouslySetInnerHTML={{__html: post.title}} 
                 />
                 <div 
